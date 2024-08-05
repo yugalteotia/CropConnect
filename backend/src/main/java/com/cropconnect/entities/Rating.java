@@ -10,7 +10,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Rating {
+public class Rating extends BaseEntity{
     @Id
     @Column(name = "rating_id", nullable = false)
     private Integer id;
@@ -36,10 +36,10 @@ public class Rating {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "created_timestamp")
-    private Instant createdTimestamp;
-
-    @Column(name = "updated_timestamp")
-    private Instant updatedTimestamp;
+//    @Column(name = "created_timestamp")
+//    private Instant createdTimestamp;
+//
+//    @Column(name = "updated_timestamp")
+//    private Instant updatedTimestamp;
 
 }

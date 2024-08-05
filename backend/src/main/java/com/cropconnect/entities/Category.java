@@ -13,7 +13,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Category {
+public class Category extends BaseEntity {
     @Id
     @Column(name = "category_id", nullable = false)
     private Integer id;
@@ -23,10 +23,10 @@ public class Category {
     @Column(name = "category_name", nullable = false, length = 50)
     private String categoryName;
 
-    @Column(name = "created_timestamp")
-    private Instant createdTimestamp;
-
-    @Column(name = "updated_timestamp")
-    private Instant updatedTimestamp;
+//    @Column(name = "created_timestamp")
+//    private Instant createdTimestamp;
+//
+//    @Column(name = "updated_timestamp")
+//    private Instant updatedTimestamp;
 
 }
