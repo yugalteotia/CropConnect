@@ -10,7 +10,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Cart {
+public class Cart extends BaseEntity {
     @Id
     @Column(name = "cart_id", nullable = false)
     private Integer id;
@@ -29,10 +29,10 @@ public class Cart {
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
 
-    @Column(name = "created_timestamp")
-    private Instant createdTimestamp;
-
-    @Column(name = "updated_timestamp")
-    private Instant updatedTimestamp;
+//    @Column(name = "created_timestamp")
+//    private Instant createdTimestamp;
+//
+//    @Column(name = "updated_timestamp")
+//    private Instant updatedTimestamp;
 
 }

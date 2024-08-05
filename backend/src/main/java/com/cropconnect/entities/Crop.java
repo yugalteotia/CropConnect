@@ -12,7 +12,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Crop {
+public class Crop extends BaseEntity {
     @Id
     @Column(name = "crop_id", nullable = false)
     private Integer id;
@@ -30,6 +30,10 @@ public class Crop {
     @Column(name = "price", nullable = false, precision = 14, scale = 2)
     private BigDecimal price;
 
+    @Size(max = 255)
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
+    
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
@@ -40,10 +44,10 @@ public class Crop {
     @JoinColumn(name = "farmer_id", nullable = false)
     private Farmer farmer;
 
-    @Column(name = "created_timestamp")
-    private Instant createdTimestamp;
-
-    @Column(name = "updated_timestamp")
-    private Instant updatedTimestamp;
+//    @Column(name = "created_timestamp")
+//    private Instant createdTimestamp;
+//
+//    @Column(name = "updated_timestamp")
+//    private Instant updatedTimestamp;
 
 }

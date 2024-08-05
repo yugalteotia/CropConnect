@@ -11,7 +11,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Payment {
+public class Payment extends BaseEntity {
     @Id
     @Column(name = "payment_id", nullable = false)
     private Integer id;
@@ -28,10 +28,10 @@ public class Payment {
     @Column(name = "payment_date")
     private Instant paymentDate;
 
-    @Column(name = "created_timestamp")
-    private Instant createdTimestamp;
-
-    @Column(name = "updated_timestamp")
-    private Instant updatedTimestamp;
+//    @Column(name = "created_timestamp")
+//    private Instant createdTimestamp;
+//
+//    @Column(name = "updated_timestamp")
+//    private Instant updatedTimestamp;
 
 }
