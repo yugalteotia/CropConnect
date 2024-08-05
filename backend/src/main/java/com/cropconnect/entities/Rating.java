@@ -12,6 +12,7 @@ import java.time.Instant;
 @Entity
 public class Rating extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rating_id", nullable = false)
     private Integer id;
 

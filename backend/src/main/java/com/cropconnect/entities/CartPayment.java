@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class CartPayment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_payment_id", nullable = false)
     private Integer id;
 

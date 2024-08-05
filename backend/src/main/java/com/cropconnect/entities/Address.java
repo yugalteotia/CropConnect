@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -17,6 +19,7 @@ import java.time.Instant;
 @Entity
 public class Address extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id", nullable = false)
     private Integer id;
 
@@ -42,8 +45,6 @@ public class Address extends BaseEntity {
     @Size(max = 20)
     @NotNull
     @Column(name = "postal_code", nullable = false, length = 20)
-    @Min(value = 6)
-    @Max(value = 8)
     private String postalCode;
 
     @Size(max = 50)

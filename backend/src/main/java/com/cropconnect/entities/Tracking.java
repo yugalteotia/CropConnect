@@ -13,6 +13,7 @@ import java.time.Instant;
 @Entity
 public class Tracking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tracking_id", nullable = false)
     private Integer id;
 
