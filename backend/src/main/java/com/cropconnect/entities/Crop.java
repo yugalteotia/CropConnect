@@ -14,6 +14,7 @@ import java.time.Instant;
 @Entity
 public class Crop extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "crop_id", nullable = false)
     private Integer id;
 

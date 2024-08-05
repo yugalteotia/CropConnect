@@ -13,6 +13,7 @@ import java.time.Instant;
 @Entity
 public class Merchant extends Person{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "merchant_id", nullable = false)
     private Integer id;
 

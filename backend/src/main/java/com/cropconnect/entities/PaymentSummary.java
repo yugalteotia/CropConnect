@@ -13,6 +13,7 @@ import java.time.Instant;
 @Entity
 public class PaymentSummary extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "summary_id", nullable = false)
     private Integer id;
 
