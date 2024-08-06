@@ -1,11 +1,18 @@
 package com.cropconnect.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -36,11 +43,5 @@ public class Rating extends BaseEntity{
     @Lob
     @Column(name = "comment")
     private String comment;
-
-//    @Column(name = "created_timestamp")
-//    private Instant createdTimestamp;
-//
-//    @Column(name = "updated_timestamp")
-//    private Instant updatedTimestamp;
 
 }

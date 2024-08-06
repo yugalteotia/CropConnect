@@ -2,11 +2,11 @@ package com.cropconnect.service;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.MerchantUpdateDTO;
-import com.cropconnect.dto.MerchantWithAddressDTO;
+import com.cropconnect.dto.MerchantDTO;
 
 public interface MerchantService {
 	
-	ApiResponse addMerchant(MerchantWithAddressDTO merchantWithAddressDTO);
+	ApiResponse addMerchant(MerchantDTO merchantWithAddressAndUserDTO);
 	ApiResponse updateMerchant(Integer id, MerchantUpdateDTO merchantUpdateDTO);
 	ApiResponse deleteMarchant(Integer id);
 	
