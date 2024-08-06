@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.MerchantUpdateDTO;
-import com.cropconnect.dto.MerchantWithAddressDTO;
-import com.cropconnect.entities.Merchant;
+import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.service.MerchantService;
 
 @RestController
@@ -25,17 +24,17 @@ public class MerchantController {
 	private MerchantService merchantService; 
 	
 	@PostMapping
-	public ResponseEntity<ApiResponse> addMerchant(@RequestBody MerchantWithAddressDTO merchantWithAddressDTO){
+	public ResponseEntity<ApiResponse> addMerchant(@RequestBody MerchantDTO merchantDTO){
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
-				.body(merchantService.addMerchant(merchantWithAddressDTO));
+				.body(merchantService.addMerchant(merchantDTO));
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse> updateMerchant(@PathVariable Integer id, MerchantUpdateDTO merchantDTO){
+	public ResponseEntity<ApiResponse> updateMerchant(@PathVariable Integer id, MerchantUpdateDTO merchantUpdateDTO){
 		
 			return ResponseEntity.status(HttpStatus.OK)
-					.body(merchantService.updateMerchant(id, merchantDTO));
+					.body(merchantService.updateMerchant(id, merchantUpdateDTO));
 	}
 	
 	@DeleteMapping("/{id}")

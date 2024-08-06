@@ -7,11 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.MerchantUpdateDTO;
-import com.cropconnect.dto.MerchantWithAddressDTO;
+import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Merchant;
+import com.cropconnect.entities.Role;
+import com.cropconnect.entities.User;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.MerchantRepository;
+import com.cropconnect.repository.UserRepository;
 
 @Service
 @Transactional
@@ -23,49 +26,44 @@ public class MerchantServiceImpl implements MerchantService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
     @Autowired
     private ModelMapper modelMapper;
 
 	@Override
-	public ApiResponse addMerchant(MerchantWithAddressDTO merchantWithAddressDTO) {
-		
-		try {
-			Address address = modelMapper.map(merchantWithAddressDTO.getAddress(), Address.class);
+	public ApiResponse addMerchant(MerchantDTO merchantDTO) {
+
+			Address address = modelMapper.map(merchantDTO.getAddress(), Address.class);
 			address = addressRepository.save(address);
 			
-			Merchant merchant = modelMapper.map(merchantWithAddressDTO, Merchant.class);
+			User user = modelMapper.map(merchantDTO.getUser(), User.class);
+			user.setRole(Role.MERCHANT);
+			 user = userRepository.save(user);
+			
+			Merchant merchant = modelMapper.map(merchantDTO, Merchant.class);
 			merchant.setAddress(address);
+			merchant.setUser(user);
 			
 			merchantRepository.save(merchant);
 			return new ApiResponse("Merchant added successfully");
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			return new ApiResponse("Error while adding Merchant");
-		}
 	}
 
 	@Override
 	public ApiResponse updateMerchant(Integer id, MerchantUpdateDTO merchantUpdateDTO) {
-		
-		try {
+
 			Merchant merchant = merchantRepository.findById(id)
 					.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + id));
 			
 			modelMapper.map(merchantUpdateDTO, merchant);
 			merchantRepository.save(merchant);
 			return new ApiResponse("Merchant updated successfully");
-			
-		}catch (Exception e) {
-			return new ApiResponse("Error while updating merchant");
-		}
-
 	}
 
 	@Override
 	public ApiResponse deleteMarchant(Integer id) {
 		
-		try {
 		Merchant merchant = merchantRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + id));
 		
@@ -75,11 +73,6 @@ public class MerchantServiceImpl implements MerchantService {
 		
 		merchantRepository.delete(merchant);
 		 return new ApiResponse("Merchant and associated address deleted successfully");
-		 
-		} catch (Exception e) {
-        return new ApiResponse("Error deleting merchant: " + e.getMessage());
-        
-		}
 	}
 
 }

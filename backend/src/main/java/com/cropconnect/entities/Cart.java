@@ -30,10 +30,5 @@ public class Cart extends BaseEntity {
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
 
-//    @Column(name = "created_timestamp")
-//    private Instant createdTimestamp;
-//
-//    @Column(name = "updated_timestamp")
-//    private Instant updatedTimestamp;
 
 }

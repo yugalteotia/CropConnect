@@ -25,8 +25,8 @@ public class Address extends BaseEntity {
 
     @Size(max = 100)
     @NotNull
-    @Column(name = "street", nullable = false, length = 100)
-    private String street;
+    @Column(name = "address_line1", nullable = false, length = 100)
+    private String addressLine1;
 
     @Size(max = 100)
     @Column(name = "address_line2", length = 100)
@@ -52,15 +52,9 @@ public class Address extends BaseEntity {
     @Column(name = "country", nullable = false, length = 50)
     private String country;
 
-    @Size(max = 20)
+    @Size(max = 13)
     @NotNull
     @Column(name = "mobile_number", nullable = false, length = 20)
     private String mobileNumber;
-
-//    @Column(name = "created_timestamp")
-//    private Instant createdTimestamp;
-//
-//    @Column(name = "updated_timestamp")
-//    private Instant updatedTimestamp;
 
 }

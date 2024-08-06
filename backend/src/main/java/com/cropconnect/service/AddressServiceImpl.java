@@ -9,6 +9,7 @@ import com.cropconnect.dto.AddressDTO;
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Merchant;
+import com.cropconnect.exception.ResourceNotFoundException;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.MerchantRepository;
 
@@ -31,11 +32,11 @@ public class AddressServiceImpl implements AddressService {
 		try {
 			
 			Merchant merchant = merchantRepository.findById(merchantId)
-					.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + merchantId));
+					.orElseThrow(() -> new ResourceNotFoundException("Merchant not found with id: " + merchantId));
 			
 			Address address = merchant.getAddress();
 			if (address == null)
-				throw new RuntimeException("Address not found for merchant with id: "+merchantId);
+				throw new ResourceNotFoundException("Address not found for merchant with id: "+merchantId);
 			
 			modelMapper.map(addressDTO, address);
 			addressRepository.save(address);

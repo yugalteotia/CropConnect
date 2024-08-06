@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,10 +37,10 @@ public class User extends BaseEntity{
 //    @Pattern(regexp = "")
     private String password;
 
-    @Size(max = 20)
-    @NotNull
-    @Column(name = "role", nullable = false, length = 20)
-    private String role;
+
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 //    @Column(name = "created_timestamp")
 //    private Instant createdTimestamp;
