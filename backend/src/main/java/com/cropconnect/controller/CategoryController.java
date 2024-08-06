@@ -27,19 +27,19 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllCategories() {
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
     	
-        List<Category> categories = categoryService.getAllCategories();
+        List<CategoryDTO> categories = categoryService.getAllCategories();
         return ResponseEntity.status(HttpStatus.OK)
         		.body(categories);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getSingleCategory(@PathVariable Integer id) {
+    public ResponseEntity<CategoryDTO> getSingleCategory(@PathVariable Integer id) {
     	
-        Category category = categoryService.getSingleCategory(id);
+        CategoryDTO categoryDTO = categoryService.getSingleCategory(id);
         return ResponseEntity.status(HttpStatus.OK)
-        		.body(category);
+        		.body(categoryDTO);
         
     }
 
@@ -61,21 +61,21 @@ public class CategoryController {
     }
     
     @GetMapping("/sorted/asc")
-    public ResponseEntity<List<Category>> getAllCategoriesSortedAsc(@RequestParam String sortBy){
+    public ResponseEntity<List<CategoryDTO>> getAllCategoriesSortedAsc(@RequestParam String sortBy){
     	
     	return ResponseEntity.status(HttpStatus.OK)
     			.body(categoryService.getAllCategoriesSortedAsc(sortBy));
     }
     
     @GetMapping("/sorted/desc")
-    public ResponseEntity<List<Category>> getAllCategoriesSortedDesc(@RequestParam String sortBy){
+    public ResponseEntity<List<CategoryDTO>> getAllCategoriesSortedDesc(@RequestParam String sortBy){
     	
     	return ResponseEntity.status(HttpStatus.OK)
     			.body(categoryService.getAllCategoriesSortedDesc(sortBy));
     }
     
     @GetMapping("/search")
-    public ResponseEntity<List<Category>> searchCategories(@RequestParam String keyword) {
+    public ResponseEntity<List<CategoryDTO>> searchCategories(@RequestParam String keyword) {
     	
     	return ResponseEntity.status(HttpStatus.OK)
     			.body(categoryService.searchCategories(keyword));

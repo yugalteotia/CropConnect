@@ -10,6 +10,7 @@ import com.cropconnect.dto.MerchantUpdateDTO;
 import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Merchant;
+import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.MerchantRepository;
@@ -33,12 +34,12 @@ public class MerchantServiceImpl implements MerchantService {
 
 	@Override
 	public ApiResponse addMerchant(MerchantDTO merchantDTO) {
-		
-		try {
+
 			Address address = modelMapper.map(merchantDTO.getAddress(), Address.class);
 			address = addressRepository.save(address);
 			
 			User user = modelMapper.map(merchantDTO.getUser(), User.class);
+			user.setRole(Role.MERCHANT);
 			 user = userRepository.save(user);
 			
 			Merchant merchant = modelMapper.map(merchantDTO, Merchant.class);
@@ -47,34 +48,22 @@ public class MerchantServiceImpl implements MerchantService {
 			
 			merchantRepository.save(merchant);
 			return new ApiResponse("Merchant added successfully");
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			return new ApiResponse("Error while adding Merchant");
-		}
 	}
 
 	@Override
 	public ApiResponse updateMerchant(Integer id, MerchantUpdateDTO merchantUpdateDTO) {
-		
-		try {
+
 			Merchant merchant = merchantRepository.findById(id)
 					.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + id));
 			
 			modelMapper.map(merchantUpdateDTO, merchant);
 			merchantRepository.save(merchant);
 			return new ApiResponse("Merchant updated successfully");
-			
-		}catch (Exception e) {
-			return new ApiResponse("Error while updating merchant");
-		}
-
 	}
 
 	@Override
 	public ApiResponse deleteMarchant(Integer id) {
 		
-		try {
 		Merchant merchant = merchantRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + id));
 		
@@ -84,11 +73,6 @@ public class MerchantServiceImpl implements MerchantService {
 		
 		merchantRepository.delete(merchant);
 		 return new ApiResponse("Merchant and associated address deleted successfully");
-		 
-		} catch (Exception e) {
-        return new ApiResponse("Error deleting merchant: " + e.getMessage());
-        
-		}
 	}
 
 }

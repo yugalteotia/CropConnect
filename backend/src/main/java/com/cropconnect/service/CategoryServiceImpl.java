@@ -2,6 +2,7 @@ package com.cropconnect.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.CategoryDTO;
 import com.cropconnect.entities.Category;
+import com.cropconnect.exception.ResourceNotFoundException;
 import com.cropconnect.repository.CategoryRepository;
 
 @Service
@@ -27,112 +29,73 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public ApiResponse addCategory(CategoryDTO categoryDTO) {
     	
-        try {
-        	
             categoryRepository.save(modelMapper.map(categoryDTO,Category.class));
             return new ApiResponse("Category added successfully");
-            
-        } catch (Exception e) {
-            return new ApiResponse("Error while adding category: " );
-            
-        }
     }
 
     @Override
-    public List<Category> getAllCategories() {
-    	
-        try {
-            return categoryRepository.findAll();
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Error while fetching categories: " + e.getMessage());
-        }
+    public List<CategoryDTO> getAllCategories() {
+
+        	List<Category> categories = categoryRepository.findAll();
+            return categories.stream()
+            						.map(category -> modelMapper.map(category, CategoryDTO.class))
+            						.toList();
     }
 
     @Override
-    public Category getSingleCategory(Integer id) {
-    	
-        try {
-            return categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
-            
-        } catch (Exception e) {
-            throw new RuntimeException("Error while fetching category: " + e.getMessage());
-        }
+    public CategoryDTO getSingleCategory(Integer id) {
+
+            Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));
+            return modelMapper.map(category, CategoryDTO.class);
     }
 
     @Override
     public ApiResponse updateCategory(Integer id, CategoryDTO updatedCategoryDTO) {
     	
-        try {
-            Optional<Category> optionalCategory = categoryRepository.findById(id);
+            Category category = categoryRepository.findById(id)
+            	.orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));
             
-            if (optionalCategory.isPresent()) {
-                Category category = optionalCategory.get();
-                category.setCategoryName(updatedCategoryDTO.getCategoryName());
-                categoryRepository.save(category);
-                return new ApiResponse("Category updated successfully");
-                
-            } else {
-                return new ApiResponse("Category not found with id: " + id);
-            }
-            
-        } catch (Exception e) {
-            return new ApiResponse("Error while updating category: " + e.getMessage());
-        }
+            modelMapper.map(updatedCategoryDTO, category);
+            categoryRepository.save(category);
+            return new ApiResponse("Category updated successfully");         
     }
 
     @Override
     public ApiResponse deleteCategory(Integer id) {
     	
-        try {
             Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found with id: " + id));
             
             categoryRepository.delete(category);
             return new ApiResponse("Category deleted successfully");
-            
-        } catch (Exception e) {
-            return new ApiResponse("Error while deleting category: " + e.getMessage());
-        }
     }
     
     @Override
-    public List<Category> searchCategories(String keyword){
-    	try {
+    public List<CategoryDTO> searchCategories(String keyword){
+    
     		return categoryRepository.searchByCategoryName(keyword);
-    		
-    	}catch (Exception e) {
-			throw new RuntimeException("Error while searching categories: "+e.getMessage());
-		}
     }
     
     
     
     @Override
-    public List<Category> getAllCategoriesSortedAsc(String sortBy){
+    public List<CategoryDTO> getAllCategoriesSortedAsc(String sortBy){
     	
-    	try {
-    		return categoryRepository.findAll(Sort.by(Sort.Direction.ASC, sortBy));
-    		
-    	}catch (Exception e) {
-			
-    		throw new RuntimeException("Error while fetching sorted categories in ascending order: "+e.getMessage());
-		}
+    		List<Category> categories =  categoryRepository.findAll(Sort.by(Sort.Direction.ASC, sortBy));
+    		return categories.stream()
+    								.map(category -> modelMapper.map(category, CategoryDTO.class))
+    								.toList();
     }
 
 	@Override
-	public List<Category> getAllCategoriesSortedDesc(String sortBy) {
-		
-		try {
-			return categoryRepository.findAll(Sort.by(Sort.Direction.DESC, sortBy));
-			
-		}catch (Exception e) {
-			
-			throw new RuntimeException("Error while fetching sorted categories in descending order: "+e.getMessage());
-		}
-		
-	}
+	public List<CategoryDTO> getAllCategoriesSortedDesc(String sortBy) {
+
+    		List<Category> categories =  categoryRepository.findAll(Sort.by(Sort.Direction.DESC, sortBy));
+    		return categories.stream()
+    								.map(category -> modelMapper.map(category, CategoryDTO.class))
+    								.toList();
+    }
     
     
 }

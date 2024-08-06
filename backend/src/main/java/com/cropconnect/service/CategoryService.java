@@ -9,13 +9,11 @@ import com.cropconnect.entities.Category;
 public interface CategoryService {
 
 	ApiResponse addCategory(CategoryDTO categoryDTO);
-	List<Category> getAllCategories();
-	Category getSingleCategory(Integer id);
+	List<CategoryDTO> getAllCategories();
+	CategoryDTO getSingleCategory(Integer id);
 	ApiResponse updateCategory(Integer id, CategoryDTO updatedCategoryDTO);
 	ApiResponse deleteCategory(Integer id);
-	List<Category> searchCategories(String keyword);
-	List<Category> getAllCategoriesSortedAsc(String sortBy);
-	List<Category> getAllCategoriesSortedDesc(String sortBy);
-	
-	
+	List<CategoryDTO> searchCategories(String keyword);
+	List<CategoryDTO> getAllCategoriesSortedAsc(String sortBy);
+	List<CategoryDTO> getAllCategoriesSortedDesc(String sortBy);
 }

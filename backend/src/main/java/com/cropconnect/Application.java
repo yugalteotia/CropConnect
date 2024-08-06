@@ -19,6 +19,14 @@ public class Application {
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT)
 				.setPropertyCondition(Conditions.isNotNull());
+		
+//		 modelMapper.addMappings(new PropertyMap<Crop, CropDTO>() {
+//	            @Override
+//	            protected void configure() {
+//	                map().set(source.getCategory().getId()); // Map category to categoryId
+//	                map().setFarmerId(source.getFarmer().getId()); // Map farmer to farmerId
+//	            }
+//	        });
 		return modelMapper;
 	}
 
