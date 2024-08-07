@@ -1,8 +1,6 @@
 package com.cropconnect.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,11 +8,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.Instant;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -37,15 +37,9 @@ public class User extends BaseEntity{
 //    @Pattern(regexp = "")
     private String password;
 
-
-
     @Enumerated(EnumType.STRING)
     private Role role;
 
-//    @Column(name = "created_timestamp")
-//    private Instant createdTimestamp;
-//
-//    @Column(name = "updated_timestamp")
-//    private Instant updatedTimestamp;
-
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Order> orders;
 }
