@@ -35,10 +35,10 @@ public class MerchantServiceImpl implements MerchantService {
 	@Override
 	public ApiResponse addMerchant(MerchantDTO merchantDTO) {
 
-			Address address = modelMapper.map(merchantDTO.getAddress(), Address.class);
+			Address address = modelMapper.map(merchantDTO.getAddressDTO(), Address.class);
 			address = addressRepository.save(address);
 			
-			User user = modelMapper.map(merchantDTO.getUser(), User.class);
+			User user = modelMapper.map(merchantDTO.getUserDto(), User.class);
 			user.setRole(Role.MERCHANT);
 			 user = userRepository.save(user);
 			

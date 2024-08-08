@@ -12,5 +12,7 @@ public class CartItemDTO {
     @NotNull
     private Integer cropId;
     @NotNull
+    private String cropName;
+    @NotNull
     private Integer quantity;
 }
