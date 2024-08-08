@@ -1,5 +1,7 @@
 package com.cropconnect.dto;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -15,4 +17,6 @@ public class CartItemDTO {
     private String cropName;
     @NotNull
     private Integer quantity;
+    @NotNull
+    private BigDecimal price;
 }

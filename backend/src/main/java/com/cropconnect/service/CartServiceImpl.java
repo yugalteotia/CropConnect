@@ -1,10 +1,12 @@
 package com.cropconnect.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.CartItemDTO;
@@ -17,6 +19,7 @@ import com.cropconnect.repository.CartRepository;
 import com.cropconnect.repository.MerchantRepository;
 
 @Service
+@Transactional
 public class CartServiceImpl implements CartService{
 
 	@Autowired
@@ -33,13 +36,26 @@ public class CartServiceImpl implements CartService{
 	
 	 @Override
 	    public List<CartItemDTO> getCartItems(Integer cartId) {
+		 
+		 	Cart cart = cartRepository.findById(cartId)
+		 			.orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
 		 	
 		 	List<CartItem> cartItems = cartItemRepository.findByCartId(cartId);
+		 	
 		 	return cartItems.stream()
-		 							.map(cartItem -> modelMapper.map(cartItem, CartItemDTO.class))
+		 							.map(cartItem -> {
+		 								CartItemDTO cartItemDTO =  modelMapper.map(cartItem, CartItemDTO.class);
+		 								cartItemDTO.setCropId(cartItem.getCrop().getId());
+		 								cartItemDTO.setCropName(cartItem.getCrop().getCropName());
+		 								
+		 								BigDecimal pricePerkg = cartItem.getCrop().getPrice();
+		 								int quantityAdded = cartItem.getQuantity();
+		 								BigDecimal totalPrice = pricePerkg.multiply(BigDecimal.valueOf(quantityAdded));
+		 								cartItemDTO.setPrice(totalPrice);
+		 								
+		 								return cartItemDTO;
+		 								})
 		 							.toList();
-
-	        
 	    }
 	 
 	  @Override

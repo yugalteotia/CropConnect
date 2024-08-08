@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.entities.CartItem;
+import com.cropconnect.dto.CartItemDTO;
 import com.cropconnect.service.CartService;
 
 @RestController
@@ -29,7 +29,7 @@ public class CartController {
     } 
 
     @GetMapping("/{cartId}/items")
-    public ResponseEntity<List<CartItem>> getCartItems(@PathVariable Integer cartId) {
+    public ResponseEntity<List<CartItemDTO>> getCartItems(@PathVariable Integer cartId) {
         
     	return ResponseEntity.status(HttpStatus.OK)
     			.body(cartService.getCartItems(cartId));

@@ -34,41 +34,17 @@ public class Cart extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
+    
+  //helper methods - to add/remove a cart item
+  	public void addCartItem(CartItem item)
+  	{
+  		items.add(item);//Cart --> CartItem
+  		item.setCart(this); //CartItem --> Cart
+  	}
+  	public void removeCartItem(CartItem item)
+  	{
+  		items.remove(item);
+  		item.setCart(null);
+  	}
 }
 
-
-
-//package com.cropconnect.entities;
-//
-//import lombok.Getter;
-//import lombok.Setter;
-//
-//import javax.persistence.*;
-//import javax.validation.constraints.NotNull;
-//import java.time.Instant;
-//
-//@Getter
-//@Setter
-//@Entity
-//public class Cart extends BaseEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "cart_id", nullable = false)
-//    private Integer id;
-//
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "crop_id", nullable = false)
-//    private Crop crop;
-//
-//    @NotNull
-//    @Column(name = "quantity", nullable = false)
-//    private Integer quantity;
-//
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "merchant_id", nullable = false)
-//    private Merchant merchant;
-//
-//
-//}
