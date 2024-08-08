@@ -22,7 +22,7 @@ public class MerchantDTO {
     
     
     private Integer rating;
-    private AddressDTO address;
-    private User user;
+    private AddressDTO addressDTO;
+    private UserDTO userDto;
 }
 
