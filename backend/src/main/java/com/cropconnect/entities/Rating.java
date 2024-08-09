@@ -18,8 +18,8 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Rating extends BaseEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rating_id", nullable = false)
     private Integer id;
 
@@ -43,5 +43,12 @@ public class Rating extends BaseEntity{
     @Lob
     @Column(name = "comment")
     private String comment;
+    
+ // New setter for paymentId
+    public void setPaymentId(Integer paymentId) {
+        this.payment = new Payment();
+        this.payment.setId(paymentId);
+    }
+    
 
 }
