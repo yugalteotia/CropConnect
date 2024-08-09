@@ -20,7 +20,7 @@ import com.cropconnect.dto.CropDTO;
 import com.cropconnect.service.CropService;
 
 @RestController
-@RequestMapping("/crops")
+@RequestMapping("/api/crops")
 public class CropController {
 
 	@Autowired
@@ -54,7 +54,7 @@ public class CropController {
 				.body(cropService.updateCrop(id, cropDTO));
 	}
 	
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<ApiResponse> deleteCrop(@PathVariable Integer id){
 		
 		return ResponseEntity.status(HttpStatus.OK)

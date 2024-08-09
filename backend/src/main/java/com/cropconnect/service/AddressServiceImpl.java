@@ -2,6 +2,7 @@ package com.cropconnect.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +46,17 @@ public class AddressServiceImpl implements AddressService {
 		}catch (Exception e) {
 			return new ApiResponse("Error updating address: " + e.getMessage());
 		}
+	}
+	
+	public ApiResponse deleteAddress(Integer id) {
+		//more efficient way of deleting
+	    try {
+	        addressRepository.deleteById(id);
+	        
+	    } catch (EmptyResultDataAccessException e) {
+	        throw new ResourceNotFoundException("Address not found");
+	    }
+	    return new ApiResponse("Address deleted successfully");
 	}
 
 }

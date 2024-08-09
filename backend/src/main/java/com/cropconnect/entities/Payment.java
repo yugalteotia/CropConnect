@@ -29,10 +29,4 @@ public class Payment extends BaseEntity {
     @Column(name = "payment_date")
     private Instant paymentDate;
 
-//    @Column(name = "created_timestamp")
-//    private Instant createdTimestamp;
-//
-//    @Column(name = "updated_timestamp")
-//    private Instant updatedTimestamp;
-
 }
