@@ -2,11 +2,11 @@ package com.cropconnect.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
+
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-import javax.persistence.GenerationType;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import com.cropconnect.repository.CartRepository;
 import com.cropconnect.repository.CropRepository;
 import com.cropconnect.repository.MerchantRepository;
 
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
+
 
 public class CartServiceImpl implements CartService {
 	
