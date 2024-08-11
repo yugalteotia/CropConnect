@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
@@ -43,5 +44,24 @@ public class FarmerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteFarmer(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body(farmerService.deleteFarmer(id));
+    }    
+    @GetMapping("/sorted/asc")
+    public ResponseEntity<List<FarmerDto>> getFarmersSortedAsc(@RequestParam String sortBy) {
+        List<FarmerDto> sortedFarmers = farmerService.getFarmersSortedAsc(sortBy);
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(sortedFarmers);
     }
+
+    @GetMapping("/sorted/desc")
+    public ResponseEntity<List<FarmerDto>> getFarmersSortedDesc(@RequestParam String sortBy) {
+        List<FarmerDto> sortedFarmers = farmerService.getFarmersSortedDesc(sortBy);
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(sortedFarmers);
+    }
+    
+//    @GetMapping("/top")
+//    public ResponseEntity<List<FarmerDto>> getTopFarmersDtoByRating() {
+//        List<FarmerDto> topFarmers = farmerService.getTopFarmersDtoByRating();
+//        return ResponseEntity.status(HttpStatus.OK).body(topFarmers);
+//    }
 }

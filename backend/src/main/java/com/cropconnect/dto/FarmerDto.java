@@ -16,5 +16,8 @@ public class FarmerDto {
     private Integer rating;
     private Instant createdTimestamp;
     private Instant updatedTimestamp;
+    private AddressDTO addressDTO;
+    private UserDTO userDto;
+    
 
 }
