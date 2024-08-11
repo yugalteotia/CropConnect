@@ -75,8 +75,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDTO> searchCategories(String keyword){
     
     		return categoryRepository.searchByCategoryName(keyword);
-    }
-    
+    }   
     
     
     @Override
