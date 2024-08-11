@@ -17,31 +17,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Rating extends BaseEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rating_id", nullable = false)
-    private Integer id;
+public class Rating extends BaseEntity {
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "payment_id", nullable = false)
-    private Payment payment;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "farmer_id")
+	private Farmer farmer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farmer_id")
-    private Farmer farmer;
-
-    @NotNull
-    @Column(name = "rating", nullable = false)
-    private Integer rating;
-
-    @Lob
-    @Column(name = "comment")
-    private String comment;
+	@NotNull
+	@Column(name = "rating", nullable = false)
+	private Integer rating;
 
 }
