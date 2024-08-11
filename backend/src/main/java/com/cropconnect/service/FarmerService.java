@@ -1,9 +1,9 @@
 package com.cropconnect.service;
 
 import java.util.List;
+
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.FarmerDto;
-import com.cropconnect.entities.Farmer;
 
 public interface FarmerService {
 

@@ -1,7 +1,6 @@
 package com.cropconnect.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cropconnect.exception.ResourceNotFoundException;
+import com.cropconnect.dto.ApiResponse;
+import com.cropconnect.dto.FarmerDto;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
-import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.FarmerDto;
+import com.cropconnect.exception.ResourceNotFoundException;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.FarmerRepository;
 import com.cropconnect.repository.UserRepository;
@@ -111,7 +110,7 @@ public class FarmerServiceImpl implements FarmerService {
         List<Farmer> topFarmers = farmerRepository.findTopFarmersByRating(pageable);
         return topFarmers.stream()
                          .map(farmer -> modelMapper.map(farmer, FarmerDto.class))
-                         .collect(Collectors.toList());
+                         .toList();
     }
     
     
