@@ -17,19 +17,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Rating extends BaseEntity{
+public class Rating extends BaseEntity {
 
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farmer_id")
-    private Farmer farmer;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "farmer_id")
+	private Farmer farmer;
 
-    @NotNull
-    @Column(name = "rating", nullable = false)
-    private Integer rating;
-
+	@NotNull
+	@Column(name = "rating", nullable = false)
+	private Integer rating;
 
 }

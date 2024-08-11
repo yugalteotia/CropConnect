@@ -5,12 +5,10 @@ import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Rating;
 import com.cropconnect.repository.RatingRepository;
 import com.cropconnect.repository.FarmerRepository;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import org.springframework.data.domain.Pageable;		
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
@@ -19,80 +17,63 @@ import java.util.stream.Collectors;
 @Service
 public class RatingServiceImpl implements RatingService {
 
-    @Autowired
-    private RatingRepository ratingRepository;
+	@Autowired
+	private RatingRepository ratingRepository;
 
-    @Autowired
-    private FarmerRepository farmerRepository;
+	@Autowired
+	private FarmerRepository farmerRepository;
 
-    @Override
-    public RatingDTO createRating(RatingDTO ratingDTO) {
-        Rating rating = new Rating();
-        rating.setRating(ratingDTO.getRating());
+	@Autowired
+	private ModelMapper modelMapper;
 
-        Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
-            .orElseThrow(() -> new RuntimeException("Farmer not found"));
-        rating.setFarmer(farmer);
+	@Override
+	public RatingDTO createRating(RatingDTO ratingDTO) {
+		Rating rating = modelMapper.map(ratingDTO, Rating.class);
 
-        Rating savedRating = ratingRepository.save(rating);
-        return convertToDTO(savedRating);
-    }
+		Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
+				.orElseThrow(() -> new RuntimeException("Farmer not found"));
+		rating.setFarmer(farmer);
 
-    @Override
-    public RatingDTO updateRating(Integer id, RatingDTO ratingDTO) {
-        Rating rating = ratingRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Rating not found"));
-        
-        rating.setRating(ratingDTO.getRating());
+		Rating savedRating = ratingRepository.save(rating);
+		return modelMapper.map(savedRating, RatingDTO.class);
+	}
 
-        Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
-            .orElseThrow(() -> new RuntimeException("Farmer not found"));
-        rating.setFarmer(farmer);
+	@Override
+	public RatingDTO updateRating(Integer id, RatingDTO ratingDTO) {
+		Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found"));
 
-        Rating updatedRating = ratingRepository.save(rating);
-        return convertToDTO(updatedRating);
-    }
+		modelMapper.map(ratingDTO, rating);
 
-    @Override
-    public void deleteRating(Integer id) {
-        Rating rating = ratingRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Rating not found"));
-        ratingRepository.delete(rating);
-    }
+		Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
+				.orElseThrow(() -> new RuntimeException("Farmer not found"));
+		rating.setFarmer(farmer);
 
-    @Override
-    public RatingDTO getRatingById(Integer id) {
-        Rating rating = ratingRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Rating not found"));
-        return convertToDTO(rating);
-    }
+		Rating updatedRating = ratingRepository.save(rating);
+		return modelMapper.map(updatedRating, RatingDTO.class);
+	}
 
-    @Override
-    public List<RatingDTO> getAllRatings() {
-        return ratingRepository.findAll().stream()
-            .map(this::convertToDTO)
-            .collect(Collectors.toList());
-    }
-    @Override
-  public List<RatingDTO> getTopRatedFarmers(int topN) {
-       Pageable pageable = PageRequest.of(0, topN);
-        return ratingRepository.findTopRatedFarmers(pageable).stream()
-            .map(this::convertToDTO)
-            .collect(Collectors.toList());
-    }
+	@Override
+	public void deleteRating(Integer id) {
+		Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found"));
+		ratingRepository.delete(rating);
+	}
 
-   // @Override
-//   public List<RatingDTO> getTopRatedFarmers(int topN) {
-//        return ratingRepository.findTopRatedFarmers(topN).stream()
-//            .map(this::convertToDTO)
-//            .collect(Collectors.toList());
-//    }
+	@Override
+	public RatingDTO getRatingById(Integer id) {
+		Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found"));
+		return modelMapper.map(rating, RatingDTO.class);
+	}
 
-    private RatingDTO convertToDTO(Rating rating) {
-        RatingDTO ratingDTO = new RatingDTO();
-        ratingDTO.setId(rating.getId());
-        ratingDTO.setFarmerId(rating.getFarmer().getId());
-        ratingDTO.setRating(rating.getRating());
-        return ratingDTO;
-    }
+	@Override
+	public List<RatingDTO> getAllRatings() {
+		return ratingRepository.findAll().stream().map(rating -> modelMapper.map(rating, RatingDTO.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RatingDTO> getTopRatedFarmers(int topN) {
+		Pageable pageable = PageRequest.of(0, topN);
+		return ratingRepository.findTopRatedFarmers(pageable).stream()
+				.map(rating -> modelMapper.map(rating, RatingDTO.class)).collect(Collectors.toList());
+	}
 }

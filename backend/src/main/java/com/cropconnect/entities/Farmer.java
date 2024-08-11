@@ -20,26 +20,23 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Farmer extends Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "farmer_id", nullable = false)
-    private Integer id;
-    
-<<<<<<< HEAD
- // Default constructor
-    public Farmer() {
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "farmer_id", nullable = false)
+	private Integer id;
 
-    // Constructor to create Farmer with only ID
-    public Farmer(Integer id) {
-        this.id = id;
-    }
-=======
-    @Column(name = "rating")
-  	private Integer rating;
->>>>>>> a5454e0db577298f3261aad9cd5e1850d0bfcdfb
+	// Default constructor
+	public Farmer() {
+	}
 
-    
+	// Constructor to create Farmer with only ID
+	public Farmer(Integer id) {
+		this.id = id;
+	}
+
+	@Column(name = "rating")
+	private Integer rating;
+
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")
 //    private User user;
