@@ -59,9 +59,9 @@ public class FarmerController {
                              .body(sortedFarmers);
     }
     
-//    @GetMapping("/top")
-//    public ResponseEntity<List<FarmerDto>> getTopFarmersDtoByRating() {
-//        List<FarmerDto> topFarmers = farmerService.getTopFarmersDtoByRating();
-//        return ResponseEntity.status(HttpStatus.OK).body(topFarmers);
-//    }
+    @GetMapping("/top10")
+    public ResponseEntity<List<FarmerDto>> getTop10FarmersByRating() {
+        List<FarmerDto> topFarmers = farmerService.getTop10FarmersByRating();
+        return ResponseEntity.status(HttpStatus.OK).body(topFarmers);
+    }
 }

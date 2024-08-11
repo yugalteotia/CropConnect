@@ -19,7 +19,7 @@ public interface FarmerService {
 
 	List<FarmerDto> getFarmersSortedDesc(String sortBy);
 
-//	List<FarmerDto> getTopFarmersDtoByRating();
+	List<FarmerDto> getTop10FarmersByRating();
 	
 	
     

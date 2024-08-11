@@ -1,6 +1,7 @@
 package com.cropconnect.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import com.cropconnect.dto.FarmerDto;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.FarmerRepository;
 import com.cropconnect.repository.UserRepository;
-import com.cropconnect.service.FarmerService;
 
 
 @Service
@@ -105,12 +105,14 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     
-//    @Override
-//    public List<FarmerDto> getTopFarmersDtoByRating() {
-//        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "rating"));
-//        List<Farmer> topFarmers = farmerRepository.findAll(pageable).getContent();
-//        return topFarmers.stream().map(farmer -> modelMapper.map(farmer, FarmerDto.class)).toList();
-//    }
+    @Override
+    public List<FarmerDto> getTop10FarmersByRating() {
+        Pageable pageable = PageRequest.of(0, 10); 
+        List<Farmer> topFarmers = farmerRepository.findTopFarmersByRating(pageable);
+        return topFarmers.stream()
+                         .map(farmer -> modelMapper.map(farmer, FarmerDto.class))
+                         .collect(Collectors.toList());
+    }
     
     
     
