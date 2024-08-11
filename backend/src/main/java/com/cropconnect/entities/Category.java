@@ -32,6 +32,8 @@ public class Category extends BaseEntity {
 		// TODO Auto-generated method stub
 		return categoryName;
 	}
+	
+	private String imageUrl;
 
 //    @Column(name = "created_timestamp")
 //    private Instant createdTimestamp;

@@ -1,28 +1,23 @@
 package com.cropconnect.dto;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import com.cropconnect.entities.User;
+import java.time.Instant;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class MerchantDTO {
-	
-    @Size(max = 50)
-    @NotNull
+public class FarmerDto {
+    private Integer id;
+    private Integer userId;
+    //private Integer addressId;
     private String firstName;
-    
-    @Size(max = 50)
-    @NotNull
     private String lastName;
-    
-    
     private Integer rating;
+    private Instant createdTimestamp;
+    private Instant updatedTimestamp;
     private AddressDTO addressDTO;
     private UserDTO userDto;
-}
+    
 
+}
