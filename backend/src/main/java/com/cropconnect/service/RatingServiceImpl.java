@@ -1,45 +1,98 @@
 package com.cropconnect.service;
 
-import java.util.NoSuchElementException;
+import com.cropconnect.dto.RatingDTO;
+import com.cropconnect.entities.Farmer;
+import com.cropconnect.entities.Rating;
+import com.cropconnect.repository.RatingRepository;
+import com.cropconnect.repository.FarmerRepository;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cropconnect.dto.RatingDTO;
-import com.cropconnect.entities.Crop;
-import com.cropconnect.entities.Farmer;
-import com.cropconnect.entities.Rating;
-import com.cropconnect.repository.FarmerRepository;
-import com.cropconnect.repository.RatingRepository;
-import com.cropconnect.repository.CropRepository;
+
+import org.springframework.data.domain.Pageable;		
+import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-public class RatingServiceImpl implements RatingService{
+public class RatingServiceImpl implements RatingService {
 
-	@Autowired
+    @Autowired
     private RatingRepository ratingRepository;
 
     @Autowired
     private FarmerRepository farmerRepository;
-    @Autowired
-    private CropRepository cropRepository;
-    @Autowired
-    private ModelMapper modelMapper;
 
+    @Override
     public RatingDTO createRating(RatingDTO ratingDTO) {
-        Rating rating = modelMapper.map(ratingDTO, Rating.class);
-        rating.setPaymentId(ratingDTO.getPaymentId());
-        Crop crop = cropRepository.findById(ratingDTO.getCropId())
-                                  .orElseThrow(() -> new NoSuchElementException("Crop not found for ID: " + ratingDTO.getCropId()));
-        rating.setCrop(crop);
+        Rating rating = new Rating();
+        rating.setRating(ratingDTO.getRating());
+
         Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
-                                        .orElseThrow(() -> new NoSuchElementException("Farmer not found for ID: " + ratingDTO.getFarmerId()));
-        rating.setFarmer(farmer);     
+            .orElseThrow(() -> new RuntimeException("Farmer not found"));
+        rating.setFarmer(farmer);
+
         Rating savedRating = ratingRepository.save(rating);
-        return modelMapper.map(savedRating, RatingDTO.class);
+        return convertToDTO(savedRating);
     }
 
+    @Override
+    public RatingDTO updateRating(Integer id, RatingDTO ratingDTO) {
+        Rating rating = ratingRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Rating not found"));
+        
+        rating.setRating(ratingDTO.getRating());
 
-	
+        Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
+            .orElseThrow(() -> new RuntimeException("Farmer not found"));
+        rating.setFarmer(farmer);
+
+        Rating updatedRating = ratingRepository.save(rating);
+        return convertToDTO(updatedRating);
+    }
+
+    @Override
+    public void deleteRating(Integer id) {
+        Rating rating = ratingRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Rating not found"));
+        ratingRepository.delete(rating);
+    }
+
+    @Override
+    public RatingDTO getRatingById(Integer id) {
+        Rating rating = ratingRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Rating not found"));
+        return convertToDTO(rating);
+    }
+
+    @Override
+    public List<RatingDTO> getAllRatings() {
+        return ratingRepository.findAll().stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+    }
+    @Override
+  public List<RatingDTO> getTopRatedFarmers(int topN) {
+       Pageable pageable = PageRequest.of(0, topN);
+        return ratingRepository.findTopRatedFarmers(pageable).stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+    }
+
+   // @Override
+//   public List<RatingDTO> getTopRatedFarmers(int topN) {
+//        return ratingRepository.findTopRatedFarmers(topN).stream()
+//            .map(this::convertToDTO)
+//            .collect(Collectors.toList());
+//    }
+
+    private RatingDTO convertToDTO(Rating rating) {
+        RatingDTO ratingDTO = new RatingDTO();
+        ratingDTO.setId(rating.getId());
+        ratingDTO.setFarmerId(rating.getFarmer().getId());
+        ratingDTO.setRating(rating.getRating());
+        return ratingDTO;
+    }
 }

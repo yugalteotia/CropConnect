@@ -17,6 +17,15 @@ public class Farmer extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "farmer_id", nullable = false)
     private Integer id;
+    
+ // Default constructor
+    public Farmer() {
+    }
+
+    // Constructor to create Farmer with only ID
+    public Farmer(Integer id) {
+        this.id = id;
+    }
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")
