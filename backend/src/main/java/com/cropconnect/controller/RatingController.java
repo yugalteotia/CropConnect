@@ -3,6 +3,7 @@ package com.cropconnect.controller;
 import com.cropconnect.dto.RatingDTO;
 import com.cropconnect.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,13 @@ import java.util.List;
 public class RatingController {
 
     @Autowired
-    private RatingService ratingService;
+    private RatingService ratingService;	
+
 
     @PostMapping
     public ResponseEntity<RatingDTO> createRating(@RequestBody RatingDTO ratingDTO) {
         RatingDTO createdRating = ratingService.createRating(ratingDTO);
-        return ResponseEntity.ok(createdRating);
+        return new ResponseEntity<>(createdRating, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -26,11 +28,10 @@ public class RatingController {
         RatingDTO updatedRating = ratingService.updateRating(id, ratingDTO);
         return ResponseEntity.ok(updatedRating);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRating(@PathVariable Integer id) {
         ratingService.deleteRating(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build(); 
     }
 
     @GetMapping("/{id}")
@@ -45,11 +46,6 @@ public class RatingController {
         return ResponseEntity.ok(ratings);
     }
 
-//    @GetMapping("/top-rated-farmers")
-//    public ResponseEntity<List<RatingDTO>> getTopRatedFarmers(@RequestParam int topN) {
-//        List<RatingDTO> topRatedFarmers = ratingService.getTopRatedFarmers(topN);
-//        return ResponseEntity.ok(topRatedFarmers);
-//    }
     @GetMapping("/top-rated-farmers")
     public ResponseEntity<List<RatingDTO>> getTopRatedFarmers(@RequestParam int topN) {
         List<RatingDTO> topRatedFarmers = ratingService.getTopRatedFarmers(topN);

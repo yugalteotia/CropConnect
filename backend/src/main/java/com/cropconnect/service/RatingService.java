@@ -11,3 +11,5 @@ public interface RatingService {
     List<RatingDTO> getAllRatings();
     List<RatingDTO> getTopRatedFarmers(int topN);
 }
+
+ 
