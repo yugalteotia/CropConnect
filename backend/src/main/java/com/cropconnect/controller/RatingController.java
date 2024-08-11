@@ -1,5 +1,6 @@
 package com.cropconnect.controller;
 
+import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.RatingDTO;
 import com.cropconnect.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,21 +18,21 @@ public class RatingController {
 	private RatingService ratingService;
 
 	@PostMapping
-	public ResponseEntity<RatingDTO> createRating(@RequestBody RatingDTO ratingDTO) {
-		RatingDTO createdRating = ratingService.createRating(ratingDTO);
-		return new ResponseEntity<>(createdRating, HttpStatus.CREATED);
+	public ResponseEntity<ApiResponse> createRating(@RequestBody RatingDTO ratingDTO) {
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(ratingService.createRating(ratingDTO));
+
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RatingDTO> updateRating(@PathVariable Integer id, @RequestBody RatingDTO ratingDTO) {
-		RatingDTO updatedRating = ratingService.updateRating(id, ratingDTO);
-		return ResponseEntity.ok(updatedRating);
+	public ResponseEntity<ApiResponse> updateRating(@PathVariable Integer id, @RequestBody RatingDTO ratingDTO) {
+
+		return ResponseEntity.status(HttpStatus.OK).body(ratingService.updateRating(id, ratingDTO));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteRating(@PathVariable Integer id) {
-		ratingService.deleteRating(id);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<ApiResponse> deleteRating(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(ratingService.deleteRating(id));
 	}
 
 	@GetMapping("/{id}")

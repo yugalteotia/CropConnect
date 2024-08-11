@@ -1,18 +1,20 @@
 package com.cropconnect.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.RatingDTO;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Rating;
-import com.cropconnect.repository.RatingRepository;
 import com.cropconnect.repository.FarmerRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.PageRequest;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import com.cropconnect.repository.RatingRepository;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -27,19 +29,18 @@ public class RatingServiceImpl implements RatingService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public RatingDTO createRating(RatingDTO ratingDTO) {
+	public ApiResponse createRating(RatingDTO ratingDTO) {
 		Rating rating = modelMapper.map(ratingDTO, Rating.class);
 
 		Farmer farmer = farmerRepository.findById(ratingDTO.getFarmerId())
 				.orElseThrow(() -> new RuntimeException("Farmer not found"));
 		rating.setFarmer(farmer);
 
-		Rating savedRating = ratingRepository.save(rating);
-		return modelMapper.map(savedRating, RatingDTO.class);
+		return new ApiResponse("Rating added successfully");
 	}
 
 	@Override
-	public RatingDTO updateRating(Integer id, RatingDTO ratingDTO) {
+	public ApiResponse updateRating(Integer id, RatingDTO ratingDTO) {
 		Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found"));
 
 		modelMapper.map(ratingDTO, rating);
@@ -48,14 +49,14 @@ public class RatingServiceImpl implements RatingService {
 				.orElseThrow(() -> new RuntimeException("Farmer not found"));
 		rating.setFarmer(farmer);
 
-		Rating updatedRating = ratingRepository.save(rating);
-		return modelMapper.map(updatedRating, RatingDTO.class);
+		return new ApiResponse("Rating  updated successfully");
 	}
 
 	@Override
-	public void deleteRating(Integer id) {
+	public ApiResponse deleteRating(Integer id) {
 		Rating rating = ratingRepository.findById(id).orElseThrow(() -> new RuntimeException("Rating not found"));
 		ratingRepository.delete(rating);
+		return new ApiResponse("Rating deleted successfully");
 	}
 
 	@Override

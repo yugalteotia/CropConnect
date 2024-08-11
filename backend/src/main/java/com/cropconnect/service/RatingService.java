@@ -1,14 +1,15 @@
 package com.cropconnect.service;
 
+import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.RatingDTO;
 import java.util.List;
 
 public interface RatingService {
-	RatingDTO createRating(RatingDTO ratingDTO);
+	ApiResponse createRating(RatingDTO ratingDTO);
 
-	RatingDTO updateRating(Integer id, RatingDTO ratingDTO);
+	ApiResponse updateRating(Integer id, RatingDTO ratingDTO);
 
-	void deleteRating(Integer id);
+	ApiResponse deleteRating(Integer id);
 
 	RatingDTO getRatingById(Integer id);
 
