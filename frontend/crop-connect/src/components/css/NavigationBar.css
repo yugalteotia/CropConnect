@@ -1,0 +1,18 @@
+/* src/NavigationBar.css */
+.custom-navbar {
+    background-color: #343a40; /* Dark background color */
+  }
+  
+  .custom-navbar .navbar-brand {
+    color: #ffffff; /* White text color for brand */
+  }
+  
+  .custom-navbar .nav-link {
+    color: #ffffff; /* White text color for nav links */
+  }
+  
+  /* Optional: Change link color on hover */
+  .custom-navbar .nav-link:hover {
+    color: #adb5bd; /* Light grey color on hover */
+  }
+  
