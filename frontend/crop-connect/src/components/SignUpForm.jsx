@@ -19,28 +19,39 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
     if (
       email && password && firstName && lastName && 
       addressLine1 && city && state && country && postalCode && mobileNumber
     ) {
-      signUp({
-        email,
-        password,
+      // Structure the data to match the backend DTOs
+      const data = {
         firstName,
         lastName,
-        addressLine1,
-        addressLine2,
-        city,
-        state,
-        country,
-        postalCode,
-        mobileNumber,
-        userType,
-      });
+        addressDTO: {
+          addressLine1,
+          addressLine2,
+          city,
+          state,
+          country,
+          postalCode,
+          mobileNumber,
+        },
+        userDTO: {
+          email,
+          password,
+          role: userType.toUpperCase(), // Ensure the role is in the format expected by the backend
+        },
+      };
+  
+      // Send the structured data to the signUp function
+      console.log(data);
+      signUp(data);
     } else {
       alert('Please fill in all required fields.');
     }
   };
+  
 
   return (
     <div className="signup-carousel-container">
@@ -50,13 +61,16 @@ const SignUpForm = () => {
           <input
             type="text"
             value={firstName}
+            min={3}
             onChange={(e) => setFirstName(e.target.value)}
             required
             placeholder="First Name"
+            
           />
           <input
             type="text"
             value={lastName}
+            min={3}
             onChange={(e) => setLastName(e.target.value)}
             required
             placeholder="Last Name"
@@ -64,6 +78,7 @@ const SignUpForm = () => {
           <input
             type="email"
             value={email}
+            min={12}
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="Email"
