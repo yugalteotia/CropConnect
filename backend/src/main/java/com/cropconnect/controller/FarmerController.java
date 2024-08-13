@@ -20,7 +20,7 @@ import com.cropconnect.dto.FarmerDto;
 import com.cropconnect.service.FarmerService;
 
 @RestController
-@RequestMapping("/farmer")
+@RequestMapping("/api/farmers")
 public class FarmerController {
 
     @Autowired

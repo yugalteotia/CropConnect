@@ -16,7 +16,7 @@ import com.cropconnect.dto.CartDto;
 import com.cropconnect.service.CartService;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 public class CartController {
 
 	private CartService cartService;

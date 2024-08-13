@@ -22,7 +22,7 @@ import com.cropconnect.dto.OrderUpdateRequest;
 import com.cropconnect.service.OrderService;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
 	
