@@ -53,6 +53,7 @@ const SignUpForm = () => {
             onChange={(e) => setFirstName(e.target.value)}
             required
             placeholder="First Name"
+            
           />
           <input
             type="text"
