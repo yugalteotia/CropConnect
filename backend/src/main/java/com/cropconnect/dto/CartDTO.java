@@ -14,9 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CartDto {
+public class CartDTO {
 	
 	 	private Integer id;
  	    private MerchantDTO merchant;
-	    private List<CartItemDto> items = new ArrayList<>();
+	    private List<CartItemDTO> items = new ArrayList<>();
 }

@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cropconnect.dto.CreateOrderRequest;
-import com.cropconnect.dto.OrderDto;
+import com.cropconnect.dto.OrderDTO;
 import com.cropconnect.dto.OrderUpdateRequest;
 import com.cropconnect.entities.Cart;
 import com.cropconnect.entities.CartItem;
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	    private CartRepository cartRepository;
 	    
 	    @Override
-	    public OrderDto createOrder(CreateOrderRequest orderDto) {
+	    public OrderDTO createOrder(CreateOrderRequest orderDto) {
 
 	        int merchantId = orderDto.getMerchantId();
 	        int cartId = orderDto.getCartId();
@@ -95,7 +95,7 @@ public class OrderServiceImpl implements OrderService {
 	        cart.getItems().clear();
 	        cartRepository.save(cart);
 	        Order savedOrder = orderRepository.save(order);
-	        return modelMapper.map(savedOrder, OrderDto.class);
+	        return modelMapper.map(savedOrder, OrderDTO.class);
 	    }
 
 	    @Override
@@ -107,17 +107,17 @@ public class OrderServiceImpl implements OrderService {
 	    }
 
 	    @Override
-	    public List<OrderDto> getOrdersOfMerchant(Integer merchantId) {
+	    public List<OrderDTO> getOrdersOfMerchant(Integer merchantId) {
 	        Merchant merchant = merchantRepository.findById(merchantId).orElseThrow(() -> new ResourceNotFoundException("Merchant not found !!"));
 	        List<Order> orders = orderRepository.findByMerchant(merchant);
-	        List<OrderDto> orderDtos = orders.stream().map(order -> modelMapper.map(order, OrderDto.class)).collect(Collectors.toList());
+	        List<OrderDTO> orderDtos = orders.stream().map(order -> modelMapper.map(order, OrderDTO.class)).collect(Collectors.toList());
 	        return orderDtos;
 	    }
 
 
 	    
 	    @Override
-	    public OrderDto updateOrder(String orderId, OrderUpdateRequest request) {
+	    public OrderDTO updateOrder(String orderId, OrderUpdateRequest request) {
 
 	        //get the order
 	        Order order = orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Id not found"));
@@ -128,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
 	        order.setOrderStatus(request.getOrderStatus());
 	        order.setDeliveredDate(request.getDeliveredDate());
 	        Order updatedOrder = orderRepository.save(order);
-	        return modelMapper.map(updatedOrder, OrderDto.class);
+	        return modelMapper.map(updatedOrder, OrderDTO.class);
 	    }
 
 

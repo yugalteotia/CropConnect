@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.CreateOrderRequest;
-import com.cropconnect.dto.OrderDto;
+import com.cropconnect.dto.OrderDTO;
 import com.cropconnect.dto.OrderUpdateRequest;
 import com.cropconnect.service.OrderService;
 
@@ -29,8 +29,8 @@ public class OrderController {
 	private OrderService orderService;
 	
 	@PostMapping
-    public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody CreateOrderRequest request) {
-        OrderDto order = orderService.createOrder(request);
+    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody CreateOrderRequest request) {
+        OrderDTO order = orderService.createOrder(request);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 	
@@ -47,18 +47,18 @@ public class OrderController {
 	
 	
 	@GetMapping("/merchants/{merchantId}")
-    public ResponseEntity<List<OrderDto>> getOrdersOfUser(@PathVariable Integer merchantId) {
-        List<OrderDto> ordersOfUser = orderService.getOrdersOfMerchant(merchantId);
+    public ResponseEntity<List<OrderDTO>> getOrdersOfUser(@PathVariable Integer merchantId) {
+        List<OrderDTO> ordersOfUser = orderService.getOrdersOfMerchant(merchantId);
         return new ResponseEntity<>(ordersOfUser, HttpStatus.OK);
     }
 	
 	 @PutMapping("/{orderId}")
-	    public ResponseEntity<OrderDto> updateOrder(
+	    public ResponseEntity<OrderDTO> updateOrder(
 	            @PathVariable("orderId") String orderId,
 	            @RequestBody OrderUpdateRequest request
 	    ) {
 
-	        OrderDto dto = this.orderService.updateOrder(orderId,request);
+	        OrderDTO dto = this.orderService.updateOrder(orderId,request);
 	        return new ResponseEntity<>(dto, HttpStatus.OK);
 
 
