@@ -30,6 +30,7 @@ function CarouselComp() {
       <Carousel.Item>
         <img
           className="d-block w-full h-[400px] object-cover" 
+
           src={slide1}
           alt="Third slide"
         />
