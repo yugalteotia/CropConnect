@@ -3,23 +3,23 @@ package com.cropconnect.service;
 import java.util.List;
 
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.FarmerDto;
+import com.cropconnect.dto.FarmerDTO;
 
 public interface FarmerService {
 
-    List<FarmerDto> getFarmers();
+    List<FarmerDTO> getFarmers();
 
-    ApiResponse addFarmer(FarmerDto farmerDto);
+    ApiResponse addFarmer(FarmerDTO farmerDto);
 
-    ApiResponse updateFarmer(Integer id, FarmerDto farmerDto);
+    ApiResponse updateFarmer(Integer id, FarmerDTO farmerDto);
 
     ApiResponse deleteFarmer(Integer id);
 
-	List<FarmerDto> getFarmersSortedAsc(String sortBy);
+	List<FarmerDTO> getFarmersSortedAsc(String sortBy);
 
-	List<FarmerDto> getFarmersSortedDesc(String sortBy);
+	List<FarmerDTO> getFarmersSortedDesc(String sortBy);
 
-	List<FarmerDto> getTop10FarmersByRating();
+	List<FarmerDTO> getTop10FarmersByRating();
 	
 	
     

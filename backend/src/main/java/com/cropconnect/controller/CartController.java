@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.AddItemToCartRequest;
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.CartDto;
+import com.cropconnect.dto.CartDTO;
 import com.cropconnect.service.CartService;
 
 @RestController
@@ -24,15 +24,15 @@ public class CartController {
 	
 	
 	 @GetMapping("/{userId}")
-	    public ResponseEntity<CartDto> getCart(@PathVariable int merchantId) {
-	        CartDto cartDto = cartService.getCartByMerchant(merchantId);
+	    public ResponseEntity<CartDTO> getCart(@PathVariable int merchantId) {
+	        CartDTO cartDto = cartService.getCartByMerchant(merchantId);
 	        return new ResponseEntity<>(cartDto, HttpStatus.OK);
 	    }
 	
 //	Adding Item to cart
 	@PostMapping("/{userId}")
-    public ResponseEntity<CartDto> addItemToCart(@PathVariable int merchantId, @RequestBody AddItemToCartRequest request) {
-        CartDto cartDto = cartService.addItemToCart(merchantId, request);
+    public ResponseEntity<CartDTO> addItemToCart(@PathVariable int merchantId, @RequestBody AddItemToCartRequest request) {
+        CartDTO cartDto = cartService.addItemToCart(merchantId, request);
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
 	

@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
-public class OrderDto {
+public class OrderDTO {
 
     private String orderId;
     private String orderStatus="PENDING";
@@ -25,7 +25,7 @@ public class OrderDto {
     private Date orderedDate=new Date();
     private Date deliveredDate;
    
-    private List<OrderItemDto> orderItems = new ArrayList<>();
+    private List<OrderItemDTO> orderItems = new ArrayList<>();
 
    
     private  MerchantDTO merchantDto;
