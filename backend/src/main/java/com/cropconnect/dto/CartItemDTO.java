@@ -1,22 +1,22 @@
 package com.cropconnect.dto;
 
-import java.math.BigDecimal;
+import com.cropconnect.entities.Crop;
 
-import javax.validation.constraints.NotNull;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
-public class CartItemDTO {
-
-    @NotNull
-    private Integer cropId;
-    @NotNull
-    private String cropName;
-    @NotNull
-    private Integer quantity;
-    @NotNull
-    private BigDecimal price;
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class CartItemDto {
+	private int cartItemId;
+	private Crop crop;
+	private int quantity;
+	private int totalPrice;
 }
