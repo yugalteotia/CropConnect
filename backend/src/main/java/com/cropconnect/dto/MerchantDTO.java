@@ -21,8 +21,8 @@ public class MerchantDTO {
     private String lastName;
     
     
-    private Integer rating;
+//    private Integer rating;
     private AddressDTO addressDTO;
-    private UserDTO userDto;
+    private UserDTO userDTO;
 }
 

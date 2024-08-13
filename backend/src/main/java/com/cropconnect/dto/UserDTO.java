@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class UserDTO {
 
-    private String createdTimestamp;
-    private String updatedTimestamp;
-    private Integer id;
+//    private String createdTimestamp;
+//    private String updatedTimestamp;
+//    private Integer id;
     private String email;
     private String password;
     private String role;
