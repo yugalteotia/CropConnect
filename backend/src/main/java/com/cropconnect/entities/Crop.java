@@ -29,7 +29,7 @@ public class Crop extends BaseEntity {
 
     @NotNull
     @Column(name = "price", nullable = false, precision = 14, scale = 2)
-    private BigDecimal price;
+    private Integer price;
 
     @Size(max = 255)
     @Column(name = "image_url", length = 255)

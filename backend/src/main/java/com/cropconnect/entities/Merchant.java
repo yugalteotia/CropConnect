@@ -1,12 +1,19 @@
 package com.cropconnect.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.Instant;
 
 @Getter
 @Setter
@@ -16,6 +23,9 @@ public class Merchant extends Person{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "merchant_id", nullable = false)
     private Integer id;
+    
+    @OneToMany(mappedBy = "merchant" , fetch= FetchType.LAZY, cascade = CascadeType.REMOVE )
+    private List<Order> orders = new ArrayList<>();
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")

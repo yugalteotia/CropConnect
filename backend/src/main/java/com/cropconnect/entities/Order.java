@@ -1,47 +1,54 @@
 package com.cropconnect.entities;
 
-import java.math.BigDecimal;
-import java.time.Instant;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "orders")
-public class Order extends BaseEntity {
+public class Order {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", nullable = false)
-    private Integer id;
+    private String orderId;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    //PENDING,DISPATCHED,DELIVERED,
+    //enum
+    private String orderStatus;
 
-    @Column(name = "order_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Instant orderDate;
+    //NOT-PAID, PAID
+    //enum
+    //boolean- false=>NOTPAID  || true=>PAID
+    private String paymentStatus;
 
-    @Column(name = "total_amount", precision = 10, scale = 2)
-    private BigDecimal totalAmount;
+    private int orderAmount;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "order_status", nullable = false)
-    private OrderStatus orderStatus = OrderStatus.PENDING;
+    @Column(length = 1000)
+    private String billingAddress;
+
+    private String billingPhone;
+
+    private String billingName;
+
+    private Date orderedDate;
+
+    private Date deliveredDate;
+
+    //user
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "merchant_id")
+    private Merchant merchant;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();
+
 }
+
