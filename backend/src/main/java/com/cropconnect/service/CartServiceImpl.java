@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cropconnect.dto.AddItemToCartRequest;
-import com.cropconnect.dto.CartDto;
+import com.cropconnect.dto.CartDTO;
 import com.cropconnect.entities.Cart;
 import com.cropconnect.entities.CartItem;
 import com.cropconnect.entities.Crop;
@@ -40,7 +40,7 @@ public class CartServiceImpl implements CartService {
 	private CartItemRepository cartItemRepository;
 	
 	@Override
-	public CartDto addItemToCart(int merchantId, AddItemToCartRequest request) {
+	public CartDTO addItemToCart(int merchantId, AddItemToCartRequest request) {
 		int quantity = request.getQuantity();
 		int cropId = request.getCropId();
 		
@@ -86,7 +86,7 @@ public class CartServiceImpl implements CartService {
 
         cart.setMerchant(merchant);
         Cart updatedCart = cartRepository.save(cart);
-        return mapper.map(updatedCart, CartDto.class);
+        return mapper.map(updatedCart, CartDTO.class);
 		
 		
 	}
@@ -111,11 +111,11 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public CartDto getCartByMerchant(int merchantId) {
+	public CartDTO getCartByMerchant(int merchantId) {
 		Merchant merchant = merchantRepository.findById(merchantId).orElseThrow(() -> new ResourceNotFoundException("merchant not found !!"));
         Cart cart = cartRepository.findByMerchant(merchant).orElseThrow(() -> new ResourceNotFoundException("Cart of given user not found !!"));
 
-        return mapper.map(cart, CartDto.class);
+        return mapper.map(cart, CartDTO.class);
 	}
 
 }

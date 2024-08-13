@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.FarmerDto;
+import com.cropconnect.dto.FarmerDTO;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Role;
@@ -39,13 +39,13 @@ public class FarmerServiceImpl implements FarmerService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<FarmerDto> getFarmers() {
+    public List<FarmerDTO> getFarmers() {
         List<Farmer> farmers = farmerRepository.findAll();
-        return farmers.stream().map(farmer -> modelMapper.map(farmer, FarmerDto.class)).toList();
+        return farmers.stream().map(farmer -> modelMapper.map(farmer, FarmerDTO.class)).toList();
     }
 
     @Override
-    public ApiResponse addFarmer(FarmerDto farmerDto) {
+    public ApiResponse addFarmer(FarmerDTO farmerDto) {
     	
     	Address address = modelMapper.map(farmerDto.getAddressDTO(), Address.class);
     	address = addressRepository.save(address);
@@ -64,7 +64,7 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
-    public ApiResponse updateFarmer(Integer id, FarmerDto farmerDto) {
+    public ApiResponse updateFarmer(Integer id, FarmerDTO farmerDto) {
         Farmer farmer = farmerRepository.findById(id)
         		.orElseThrow(()->new ResourceNotFoundException("Farmer not Found with id: "+id));
         
@@ -88,28 +88,28 @@ public class FarmerServiceImpl implements FarmerService {
     }
     
     @Override
-    public List<FarmerDto> getFarmersSortedAsc(String sortBy) {
+    public List<FarmerDTO> getFarmersSortedAsc(String sortBy) {
         List<Farmer> farmers = farmerRepository.findAll(Sort.by(Sort.Direction.ASC, sortBy));
         return farmers.stream()
-                      .map(farmer -> modelMapper.map(farmer, FarmerDto.class))
+                      .map(farmer -> modelMapper.map(farmer, FarmerDTO.class))
                       .toList();
     }
 
     @Override
-    public List<FarmerDto> getFarmersSortedDesc(String sortBy) {
+    public List<FarmerDTO> getFarmersSortedDesc(String sortBy) {
         List<Farmer> farmers = farmerRepository.findAll(Sort.by(Sort.Direction.DESC, sortBy));
         return farmers.stream()
-                      .map(farmer -> modelMapper.map(farmer, FarmerDto.class))
+                      .map(farmer -> modelMapper.map(farmer, FarmerDTO.class))
                       .toList();
     }
 
     
     @Override
-    public List<FarmerDto> getTop10FarmersByRating() {
+    public List<FarmerDTO> getTop10FarmersByRating() {
         Pageable pageable = PageRequest.of(0, 10); 
         List<Farmer> topFarmers = farmerRepository.findTopFarmersByRating(pageable);
         return topFarmers.stream()
-                         .map(farmer -> modelMapper.map(farmer, FarmerDto.class))
+                         .map(farmer -> modelMapper.map(farmer, FarmerDTO.class))
                          .toList();
     }
     

@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class OrderItemDto {
+public class OrderItemDTO {
 
 
     private int orderItemId;

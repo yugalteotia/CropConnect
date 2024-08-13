@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FarmerDto {
+public class FarmerDTO {
     private Integer id;
     private Integer userId;
     //private Integer addressId;

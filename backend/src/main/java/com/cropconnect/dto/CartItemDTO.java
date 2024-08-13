@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CartItemDto {
+public class CartItemDTO {
 	private int cartItemId;
 	private Crop crop;
 	private int quantity;
