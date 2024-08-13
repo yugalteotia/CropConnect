@@ -1,0 +1,137 @@
+/* Container for the signup form */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url('https://example.com/signup-background-image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+}
+
+/* Heading style */
+.signup-form h2 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Form styling */
+.signup-form form {
+  width: 100%;
+  max-width: 400px; /* Increased width for more fields */
+  background: rgba(0, 0, 0, 0.75); /* Slightly transparent dark background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+
+/* Input fields */
+.signup-form input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #222;
+  color: #fff;
+}
+
+/* Address Line 2 is optional */
+.signup-form input[placeholder="Address Line 2"] {
+  margin-bottom: 10px; /* Smaller margin for optional field */
+}
+
+/* Grouping fields */
+.signup-form .input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-form .input-group input {
+  width: calc(48% - 10px); /* Adjusted width for side-by-side fields */
+}
+
+/* Radio button container */
+.user-type {
+  margin-bottom: 15px;
+}
+
+/* Custom radio button styling */
+.user-type label {
+  display: block;
+  color: #fff;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 30px;
+  line-height: 24px;
+}
+
+.user-type input[type="radio"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  width: 24px; /* Larger size for the radio button */
+  height: 24px;
+  accent-color: #1bec59; /* Modern color property for radio buttons */
+}
+
+/* Custom styling for radio button circle */
+.user-type input[type="radio"]::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ebe7e7;
+  transition: background 0.3s ease;
+}
+
+.user-type input[type="radio"]:checked::before {
+  background: #1bec59; /* Color for the selected radio button */
+}
+
+/* Button styling */
+.signup-form button {
+  width: 100%;
+  padding: 15px;
+  background-color: #1bec59;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-form button:hover {
+  background-color: #0acf32;
+}
+
+/* Footer links */
+.signup-form-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-form-footer a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.signup-form-footer a:hover {
+  text-decoration: underline;
+}
+
+.signup-form-footer p {
+  margin: 10px 0;
+  color: #ddd;
+  font-size: 14px;
+}
