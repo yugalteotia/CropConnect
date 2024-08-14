@@ -56,7 +56,7 @@ public class FarmerServiceImpl implements FarmerService {
     	farmerDTO.setAddressDTO(modelMapper.map(address,AddressDTO.class ));
     	User user = farmer.getUser();
 //    	User user = modelMapper.map(farmerDTO.getUserDto(), User.class);
-    	farmerDTO.setUserDto(modelMapper.map(user,UserDTO.class ));
+    	farmerDTO.setUserDTO(modelMapper.map(user,UserDTO.class ));
     	farmerDTO.setUserId(user.getId());
     	
     	return farmerDTO;
