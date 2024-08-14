@@ -1,0 +1,106 @@
+/* Container for the whole page */
+.about-us-container {
+    padding: 3rem 2rem;
+    background-color: #def38d; /* Light background color */
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Intro Section */
+.about-us-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-us-intro h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif; /* Stylish font */
+}
+
+.about-us-intro p {
+    font-size: 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Team Section */
+.about-us-team {
+    margin-bottom: 3rem;
+}
+
+.about-us-team h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Stylish font */
+}
+
+/* Individual team member styling */
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 1.5rem;
+    border: 3px solid #ddd; /* Border around the image */
+}
+
+.team-member h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: #333;
+    font-family: 'Montserrat', sans-serif; /* Stylish font */
+}
+
+.team-member p {
+    margin: 0.25rem 0;
+    color: #666;
+}
+
+/* Contact Section */
+.about-us-contact {
+    text-align: center;
+}
+
+.about-us-contact h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif; /* Stylish font */
+}
+
+.about-us-contact p {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.about-us-contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-us-contact ul li {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+}

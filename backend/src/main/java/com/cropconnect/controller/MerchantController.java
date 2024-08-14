@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.MerchantUpdateDTO;
+import com.cropconnect.repository.UserRepository;
 import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.service.MerchantService;
 
@@ -23,8 +24,17 @@ public class MerchantController {
 	@Autowired
 	private MerchantService merchantService; 
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@PostMapping
 	public ResponseEntity<ApiResponse> addMerchant(@RequestBody MerchantDTO merchantDTO){
+		
+		if (userRepository.existsByEmail(merchantDTO.getUserDTO().getEmail())) {
+	
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
+					.body(new ApiResponse("Email is already in use"));
+		}
 		
 		return ResponseEntity.status(HttpStatus.ACCEPTED)
 				.body(merchantService.addMerchant(merchantDTO));

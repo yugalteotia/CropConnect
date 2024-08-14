@@ -12,6 +12,7 @@ import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Merchant;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
+import com.cropconnect.exception.ResourceNotFoundException;
 import com.cropconnect.repository.AddressRepository;
 import com.cropconnect.repository.MerchantRepository;
 import com.cropconnect.repository.UserRepository;
@@ -35,17 +36,9 @@ public class MerchantServiceImpl implements MerchantService {
 	@Override
 	public ApiResponse addMerchant(MerchantDTO merchantDTO) {
 			
-		System.out.println("MerchantDTO: " + merchantDTO.getFirstName());
-		System.out.println("MerchantDTO: " + merchantDTO.getLastName());
-	    System.out.println("AddressDTO: " + merchantDTO.getAddressDTO().getAddressLine1());
-	    System.out.println("AddressDTO: " + merchantDTO.getAddressDTO().getAddressLine2());
-	    System.out.println("AddressDTO: " + merchantDTO.getAddressDTO().getMobileNumber());
-	    System.out.println("UserDTO: " + merchantDTO.getUserDTO().getEmail());
-	    System.out.println("UserDTO: " + merchantDTO.getUserDTO().getPassword());
 
 			Address address = modelMapper.map(merchantDTO.getAddressDTO(), Address.class);
 			address = addressRepository.save(address);
-			System.out.println("address data"+address);
 			
 			User user = modelMapper.map(merchantDTO.getUserDTO(), User.class);
 			user.setRole(Role.MERCHANT);
@@ -63,7 +56,7 @@ public class MerchantServiceImpl implements MerchantService {
 	public ApiResponse updateMerchant(Integer id, MerchantUpdateDTO merchantUpdateDTO) {
 
 			Merchant merchant = merchantRepository.findById(id)
-					.orElseThrow(() -> new RuntimeException("Merchant not found with id: " + id));
+					.orElseThrow(() -> new ResourceNotFoundException("Merchant not found with id: " + id));
 			
 			modelMapper.map(merchantUpdateDTO, merchant);
 			merchantRepository.save(merchant);
