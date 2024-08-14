@@ -27,16 +27,15 @@ public class CartController {
 	private CartService cartService;
 	
 	
-	
-	 @GetMapping("/{userId}")
-	    public ResponseEntity<CartDTO> getCart(@PathVariable int merchantId) {
+	 @GetMapping("/{merchantId}")
+	    public ResponseEntity<CartDTO> getCart(@PathVariable Integer merchantId) {
 	        CartDTO cartDto = cartService.getCartByMerchant(merchantId);
 	        return new ResponseEntity<>(cartDto, HttpStatus.OK);
 	    }
 	
 //	Adding Item to cart
-	@PostMapping("/{userId}")
-    public ResponseEntity<CartDTO> addItemToCart(@PathVariable int merchantId, @RequestBody AddItemToCartRequest request) {
+	@PostMapping("/{merchantId}")
+    public ResponseEntity<CartDTO> addItemToCart(@PathVariable Integer merchantId, @RequestBody AddItemToCartRequest request) {
         CartDTO cartDto = cartService.addItemToCart(merchantId, request);
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
@@ -49,8 +48,8 @@ public class CartController {
 	
 	
 //	removing single item
-	@DeleteMapping("/{userId}/items/{itemId}")
-    public ResponseEntity<ApiResponse> removeItemFromCart(@PathVariable int merchantId, @PathVariable int itemId) {
+	@DeleteMapping("/{merchantId}/items/{itemId}")
+    public ResponseEntity<ApiResponse> removeItemFromCart(@PathVariable Integer merchantId, @PathVariable Integer itemId) {
         cartService.removeItemFromCart(merchantId, itemId);
         ApiResponse response = ApiResponse.builder()
                 .message("Item is removed !!")
@@ -60,8 +59,8 @@ public class CartController {
     }
 	
 //	removing all items form cart
-	@DeleteMapping("/{userId}")
-    public ResponseEntity<ApiResponse> clearCart(@PathVariable int merchantId) {
+	@DeleteMapping("/{merchantId}")
+    public ResponseEntity<ApiResponse> clearCart(@PathVariable Integer merchantId) {
         cartService.clearCart(merchantId);
         ApiResponse response = ApiResponse.builder()
                 .message("Now cart is blank !!")

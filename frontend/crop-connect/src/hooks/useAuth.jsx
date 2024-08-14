@@ -20,7 +20,7 @@ const useAuth = () => {
       const response = await axios.post('/api/auth/login', data.loginDTO);
       console.log('Login successful:', response.data);
       setUser(response.data);
-      return { success: true };
+      return { success: true, userData: response.data };
     } catch (error) {
       console.error('Error during login:', error);
       return { success: false, message: error.response?.data?.message || 'Login failed' };

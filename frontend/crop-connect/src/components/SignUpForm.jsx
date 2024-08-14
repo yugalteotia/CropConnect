@@ -64,7 +64,7 @@ const SignUpForm = () => {
 
 
   return (
-    <div className="container">
+    <div className="signup-container">
       <div className="row justify-content-center align-items-center ">
         <div className="col-10 col-md-8 col-lg-6">
           <div className="card">
