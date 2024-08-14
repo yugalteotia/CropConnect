@@ -1,11 +1,30 @@
 import { useState } from 'react';
 import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData.userDTO);
+ 
+  const login = async (loginCredentials) => {
+    const data = {
+      loginDTO: {
+        email: loginCredentials.loginDTO.email,
+        password: loginCredentials.loginDTO.password,
+      }
+    };
+
+    console.log("Login data:", data.loginDTO); // Ensure this matches the backend
+
+    try {
+      const response = await axios.post('/api/auth/login', data.loginDTO);
+      console.log('Login successful:', response.data);
+      setUser(response.data);
+      return { success: true };
+    } catch (error) {
+      console.error('Error during login:', error);
+      return { success: false, message: error.response?.data?.message || 'Login failed' };
+    }
   };
 
   const signUp = async (formData) => {

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
   
 const NavigationBar = () => {
-  const navigate = useNavigate(); // Initialize navigate
+  // const navigate = useNavigate(); // Initialize navigate
 
  
 
