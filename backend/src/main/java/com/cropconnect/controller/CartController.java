@@ -1,5 +1,8 @@
 package com.cropconnect.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,12 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cropconnect.dto.AddItemToCartRequest;
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.CartDTO;
+import com.cropconnect.dto.CartItemDTO;
 import com.cropconnect.service.CartService;
 
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
 
+	@Autowired
 	private CartService cartService;
 	
 	
@@ -35,6 +40,12 @@ public class CartController {
         CartDTO cartDto = cartService.addItemToCart(merchantId, request);
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
+	
+	@GetMapping("/{cartId}")
+	public ResponseEntity<List<CartItemDTO>> getAllCartItems(@PathVariable Integer cartId){
+		
+		return ResponseEntity.ok(cartService.getAllCartItemsByCartId(cartId));
+	}
 	
 	
 //	removing single item
