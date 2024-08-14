@@ -1,19 +1,32 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Import Bootstrap JS
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../hooks/useAuth";
-import "../css/LoginForm.css";
+import "../css/SignInForm.css";
 
 
-const LoginForm = () => {
+const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+ 
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (email && password) {
-      login({ email });
+      const data = { loginDTO: { email, password } };
+
+      const result = await login(data);
+
+      if (result.success) {
+        navigate("/"); // Redirect on successful login
+      } else {
+        alert(result.message); // Show error message from the backend
+      }
     } else {
       alert("Please enter both email and password.");
     }
@@ -43,7 +56,7 @@ const LoginForm = () => {
         <div className="login-form-footer">
           <a href="/forgot-password">Forgot password?</a>
           <p>
-            New to CinePulse? <a href="/signup">Sign up now.</a>
+            New to Crop Connect? <a href="/signup">Sign up now.</a>
           </p>
         </div>
       </div>
@@ -51,4 +64,8 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;
+
+
+
+

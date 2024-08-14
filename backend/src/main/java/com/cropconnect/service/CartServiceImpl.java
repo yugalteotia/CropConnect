@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.AddItemToCartRequest;
 import com.cropconnect.dto.CartDTO;
+import com.cropconnect.dto.CartItemDTO;
 import com.cropconnect.entities.Cart;
 import com.cropconnect.entities.CartItem;
 import com.cropconnect.entities.Crop;
@@ -21,7 +24,8 @@ import com.cropconnect.repository.CropRepository;
 import com.cropconnect.repository.MerchantRepository;
 
 
-
+@Service
+@Transactional
 public class CartServiceImpl implements CartService {
 	
 	@Autowired
@@ -36,7 +40,7 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private ModelMapper mapper;
 	
-	
+	@Autowired
 	private CartItemRepository cartItemRepository;
 	
 	@Override
@@ -116,6 +120,25 @@ public class CartServiceImpl implements CartService {
         Cart cart = cartRepository.findByMerchant(merchant).orElseThrow(() -> new ResourceNotFoundException("Cart of given user not found !!"));
 
         return mapper.map(cart, CartDTO.class);
+	}
+
+
+
+
+	@Override
+	public List<CartItemDTO> getAllCartItemsByCartId(Integer cartId) {
+	    // Find all CartItems for a particular Cart by cartId
+		System.out.println("CART ITEM DETAILS " + cartId);
+	    List<CartItem> cartItems = cartItemRepository.findByCartId(cartId);
+	    
+	    // Map the CartItem entities to CartItemDTO
+	    return cartItems.stream()
+	            .map(cartItem -> {
+	                CartItemDTO cartItemDTO = mapper.map(cartItem, CartItemDTO.class);
+	                cartItemDTO.setCrop(cartItem.getCrop()); // Assuming Crop is part of CartItemDTO
+	                return cartItemDTO;
+	            })
+	            .toList();    
 	}
 
 }

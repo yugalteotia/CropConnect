@@ -27,7 +27,7 @@ function Home() {
             <Hero />
             <hr className="my-8 border-t-2 border-gray-700" />
             <GovernmentSchemeTable />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }
