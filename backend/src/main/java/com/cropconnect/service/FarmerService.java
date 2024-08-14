@@ -8,6 +8,7 @@ import com.cropconnect.dto.FarmerDTO;
 public interface FarmerService {
 
     List<FarmerDTO> getFarmers();
+    FarmerDTO getSingleFarmer(Integer id);
 
     ApiResponse addFarmer(FarmerDTO farmerDto);
 

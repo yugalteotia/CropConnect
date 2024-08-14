@@ -30,6 +30,12 @@ public class FarmerController {
     public ResponseEntity<List<FarmerDTO>> getAllFarmers() {
         return ResponseEntity.status(HttpStatus.OK).body(farmerService.getFarmers());
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<FarmerDTO> getSingleFarmer(@PathVariable Integer id){
+    	
+    	return ResponseEntity.status(HttpStatus.OK).body(farmerService.getSingleFarmer(id));
+    }
 
     @PostMapping
     public ResponseEntity<ApiResponse> createFarmer(@RequestBody FarmerDTO farmerDto) {

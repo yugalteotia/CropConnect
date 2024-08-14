@@ -10,8 +10,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cropconnect.dto.AddressDTO;
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.FarmerDTO;
+import com.cropconnect.dto.UserDTO;
 import com.cropconnect.entities.Address;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Role;
@@ -42,6 +44,22 @@ public class FarmerServiceImpl implements FarmerService {
     public List<FarmerDTO> getFarmers() {
         List<Farmer> farmers = farmerRepository.findAll();
         return farmers.stream().map(farmer -> modelMapper.map(farmer, FarmerDTO.class)).toList();
+    }
+    
+    @Override
+    public FarmerDTO getSingleFarmer(Integer id) {
+    	Farmer farmer = farmerRepository.findById(id)
+    			.orElseThrow(()-> new ResourceNotFoundException("Farmer not found"));
+    	FarmerDTO farmerDTO =  modelMapper.map(farmer, FarmerDTO.class);
+    	Address address = farmer.getAddress();
+//    	Address address = modelMapper.map(farmerDTO.getAddressDTO(), Address.class);
+    	farmerDTO.setAddressDTO(modelMapper.map(address,AddressDTO.class ));
+    	User user = farmer.getUser();
+//    	User user = modelMapper.map(farmerDTO.getUserDto(), User.class);
+    	farmerDTO.setUserDTO(modelMapper.map(user,UserDTO.class ));
+    	farmerDTO.setUserId(user.getId());
+    	
+    	return farmerDTO;
     }
 
     @Override
