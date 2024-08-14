@@ -68,7 +68,7 @@ public class FarmerServiceImpl implements FarmerService {
     	Address address = modelMapper.map(farmerDto.getAddressDTO(), Address.class);
     	address = addressRepository.save(address);
     	
-    	User user = modelMapper.map(farmerDto.getUserDto(), User.class);
+    	User user = modelMapper.map(farmerDto.getUserDTO(), User.class);
     	user.setRole(Role.FARMER);
     	user = userRepository.save(user);
     	

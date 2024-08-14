@@ -16,13 +16,15 @@ public class FarmerDTO {
     private Integer id;
     private Integer userId;
     //private Integer addressId;
+	@Size(max = 50)
+    @NotNull
     private String firstName;
+	 @Size(max = 50)
+	    @NotNull
     private String lastName;
-    private Integer rating;
-    private Instant createdTimestamp;
-    private Instant updatedTimestamp;
+//    private Integer rating;
     private AddressDTO addressDTO;
-    private UserDTO userDto;
+    private UserDTO userDTO;
     
 
 }
