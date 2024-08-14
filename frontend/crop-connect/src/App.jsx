@@ -6,6 +6,7 @@ import SignUpForm from './components/SignUpForm'
 import Merchant from './components/merchant/Merchant'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/home/Footer'
+import ContactUs from './components/contactUs/ContactUs'
 // import NavigationBar from './components/home/NavigationBar'
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         
         <Route path="/merchant" element={<Merchant />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
     </Router>
     <Footer />
