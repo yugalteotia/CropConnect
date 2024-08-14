@@ -6,6 +6,7 @@ import CropBox from './CropBox';
 const FarmerPage = () => {
   const [cropData, setCropData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [categoriesName,setCategoriesName] = useState({})
   const [formValues, setFormValues] = useState({
     id: null,
     name: "",
@@ -16,14 +17,7 @@ const FarmerPage = () => {
     farmerId: 1, // This should come from the logged-in user's context or state
   });
 
-  // const crops = [
-  //   {
-  //     id: 1,
-  //     name: 'Jowar',
-  //     price: '$10',
-  //     imageUrl: 'https://cdn-magazine.nutrabay.com/wp-content/uploads/2023/12/cropped-jowar.jpg',
-  //   },
-  // ];
+ 
 
   useEffect(() => {
     // Fetch categories when the component mounts
@@ -42,15 +36,38 @@ const FarmerPage = () => {
       try {
         const response = await axios.get("/api/crops");
         setCropData(response.data);
+        fetchCategoryNames(response.data);
         console.log("Crops ---->",response.data);
       } catch (error) {
         console.error("Error fetching crops:", error);
       }
     };
 
+    const fetchCategoryNames = async (cropData) => {
+      console.log("IN fetch cat name", cropData);
+      const categoryMap = {};
+    
+      for (const crop of cropData) {
+        try {
+          const response = await axios.get(`/api/categories/${crop.categoryId}`);
+          const categoryData = response.data; // No need for response.json() with axios
+          console.log("categoryData", categoryData);
+          categoryMap[crop.categoryId] = categoryData.categoryName;
+        } catch (error) {
+          console.error(`Error fetching category for ID ${crop.categoryId}:`, error);
+        }
+      }
+    
+      setCategoriesName(categoryMap);
+    };
+
     fetchCategories();
     fetchCrops();
   }, []);
+
+
+  
+  // fetchCategoryNames(cropData);
 
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -85,6 +102,10 @@ const FarmerPage = () => {
       console.error("Error saving crop:", error);
     }
   };
+
+ 
+
+ 
 
   const resetForm = () => {
     setFormValues({
@@ -136,8 +157,8 @@ const FarmerPage = () => {
                 type="text"
                 className="form-control"
                 id="cropName"
-                name="name"
-                value={formValues.name}
+                name="cropName"
+                value={formValues.cropName}
                 onChange={handleInputChange}
                 placeholder="Enter crop name"
                 required
@@ -232,7 +253,7 @@ const FarmerPage = () => {
                 cropPrice={crop.price}
                 cropImage={crop.imageUrl}
                 cropQuantity={crop.quantity}
-                cropCategory={crop.categoryId}
+                cropCategory={categoriesName[crop.categoryId]}
                 onEdit={() => handleEdit(crop.id)}
                 onDelete={() => handleDelete(crop.id)}
               />
