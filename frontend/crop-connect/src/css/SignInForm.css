@@ -1,0 +1,64 @@
+
+.login-page .login-carousel-container {
+  min-height: 100vh; /* Full height of the viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(2, 44, 2);  */
+  background: url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/signupPageBgImg.jpg') no-repeat center center/cover;
+}
+
+.login-form {
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white to match the card style */
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px; /* Adjust width as needed */
+}
+
+.login-form h2 {
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+}
+
+button:hover {
+  background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+.login-form-footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.login-form-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-form-footer a:hover {
+  text-decoration: underline;
+}
+
+.login-form-footer p {
+  margin-top: 0.5rem;
+}

@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
   
 const NavigationBar = () => {
+  // const navigate = useNavigate(); // Initialize navigate
+
  
   return (
     <Navbar bg="blue" expand="lg">
