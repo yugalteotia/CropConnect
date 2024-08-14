@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Wheat",
+    "location": "Nashik",
+    "type": "Hard Red Winter",
+    "price": 199,
+    "image": "https://images.unsplash.com/photo-1498408040764-ab6eb772a145?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 2,
+    "name": "Rice",
+    "location": "Pune",
+    "type": "Basmati Rice",
+    "price": 249,
+    "image": "https://plus.unsplash.com/premium_photo-1671130295823-78f170465794?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 3,
+    "name": "Tomato",
+    "location": "Akola",
+    "type": "Rashmi",
+    "price": 49,
+    "image": "https://plus.unsplash.com/premium_photo-1661811820259-2575b82101bf?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 4,
+    "name": "Chana",
+    "location": "Nagpur",
+    "type": "Black chickpeas",
+    "price": 99,
+    "image": "https://plus.unsplash.com/premium_photo-1674025749234-9f75ffe9a8ef?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
+]
