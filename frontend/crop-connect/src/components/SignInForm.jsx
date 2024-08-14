@@ -9,7 +9,7 @@ import "../css/SignInForm.css";
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
 
  
@@ -23,7 +23,10 @@ const SignInForm = () => {
       const result = await login(data);
 
       if (result.success) {
-        navigate("/"); // Redirect on successful login
+        if (result.userData.role === "FARMER")
+          navigate("/farmer"); // Redirect on successful login
+        else if (result.userData.role === "MERCHANT")
+          navigate("/merchant")
       } else {
         alert(result.message); // Show error message from the backend
       }
@@ -33,6 +36,7 @@ const SignInForm = () => {
   };
 
   return (
+    <div class="login-page">
     <div className="login-carousel-container">
       <div className="login-form">
         <h2>Sign In</h2>
@@ -60,6 +64,7 @@ const SignInForm = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

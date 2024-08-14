@@ -153,10 +153,10 @@
 
 
 
-.container {
+.signup-container {
   
   background: url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/signupPageBgImg.jpg') no-repeat center center/cover;
-  /* background-color: rgb(2, 44, 2); */
+
 }
 
 .card {

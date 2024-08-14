@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +29,7 @@ public class CartItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartItemId;
 	
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "crop_id")
 	private Crop crop;
 	
