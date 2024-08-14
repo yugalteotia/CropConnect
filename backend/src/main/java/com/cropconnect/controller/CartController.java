@@ -41,7 +41,7 @@ public class CartController {
         return new ResponseEntity<>(cartDto, HttpStatus.OK);
     }
 	
-	@GetMapping("/{cartId}")
+	@GetMapping("/cartItems/{cartId}")
 	public ResponseEntity<List<CartItemDTO>> getAllCartItems(@PathVariable Integer cartId){
 		
 		return ResponseEntity.ok(cartService.getAllCartItemsByCartId(cartId));

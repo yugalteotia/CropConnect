@@ -40,7 +40,7 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private ModelMapper mapper;
 	
-	
+	@Autowired
 	private CartItemRepository cartItemRepository;
 	
 	@Override
@@ -128,6 +128,7 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartItemDTO> getAllCartItemsByCartId(Integer cartId) {
 	    // Find all CartItems for a particular Cart by cartId
+		System.out.println("CART ITEM DETAILS " + cartId);
 	    List<CartItem> cartItems = cartItemRepository.findByCartId(cartId);
 	    
 	    // Map the CartItem entities to CartItemDTO
