@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/home/NavigationBar";
@@ -9,6 +8,7 @@ import Footer from "./components/home/Footer";
 import AboutUs from "./components/AboutUs";
 import SignInForm from "./components/SignInForm";
 import FarmerPage from "./components/farmer/FarmerPage";
+import ContactUs from "./components/contactUs/ContactUs"
 import './css/NavigationBar.css'
 import CropFormPage from "./components/farmer/CropFormPage";
 import CropListPage from "./components/farmer/CropListPage";
@@ -52,3 +52,6 @@ function App() {
 }
 
 export default App;
+
+       
+    
