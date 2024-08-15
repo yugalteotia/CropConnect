@@ -6,11 +6,11 @@ const ContactForm = () => {
   return (
     <form className="space-y-6">
       <div className="flex gap-4">
-        <InputField label="First Name" placeholder="Bonnie" />
-        <InputField label="Last Name" placeholder="Green" />
+        <InputField label="First Name" placeholder="Your Name" />
+        <InputField label="Last Name" placeholder="Your Last Name" />
       </div>
-      <InputField label="Your email" placeholder="name@flowbite.com" type="email" />
-      <InputField label="Phone Number" placeholder="+12 345 6789" type="tel" />
+      <InputField label="Your email" placeholder="name@gmail.com" type="email" />
+      <InputField label="Phone Number" placeholder="+91 999 999 9999" type="tel" />
       <TextAreaField label="Your message" placeholder="Leave a comment..." />
       <div>
         <button

@@ -31,6 +31,7 @@ const ConditionalNavigationBar = () => {
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/farmer" element={<FarmerPage />} />
+          <Route path="/contactus" element={<ContactUs />} />
           
         </Routes>
         <Footer />
