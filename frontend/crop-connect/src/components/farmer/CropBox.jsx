@@ -46,7 +46,7 @@ const CropBox = ({
           </button>
           {/* Delete Button */}
           <button 
-            className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors" 
+            className="bg-red-500 text-white ml-2 py-2 px-4 rounded-lg hover:bg-red-600 transition-colors" 
             onClick={onDelete}
           >
             Delete
