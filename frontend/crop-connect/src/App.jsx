@@ -1,28 +1,22 @@
-import { useState } from 'react'
-import Home from './components/home/Home'
-import NavigationBar from './components/home/NavigationBar'
-import SignUpForm from './components/SignUpForm'
-import Merchant from './components/merchant/Merchant'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Footer from './components/home/Footer'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Home from "./components/home/Home";
+import NavigationBar from "./components/home/NavigationBar";
+import SignUpForm from "./components/SignUpForm";
+import CartPage from "./components//home/CartPage";
+import Merchant from "./components/merchant/Merchant";
+import Footer from "./components/home/Footer";
+import AboutUs from "./components/AboutUs";
+import SignInForm from "./components/SignInForm";
 
-import ContactUs from './components/contactUs/ContactUs'
-// import NavigationBar from './components/home/NavigationBar'
-import AboutUs from './components/AboutUs'
-import SignInForm from './components/SigninForm'
-import FarmerPage from './components/farmer/FarmerPage'
 
 const ConditionalNavigationBar = () => {
   const location = useLocation();
-  // Hide NavigationBar on the home page
-  return location.pathname !== '/' ? <NavigationBar /> : null;
+  return location.pathname !== "/" ? <NavigationBar /> : null;
 };
 
-  function App() {
-
-    return (
-      // <>
-      <Router>
+function App() {
+  return (
+    <Router>
       <ConditionalNavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,14 +26,16 @@ const ConditionalNavigationBar = () => {
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/farmer" element={<FarmerPage />} />
           <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/cart" element={<CartPage />} />
           
         </Routes>
         <Footer />
       </Router>
       // </>
     )
-  
-
 }
 
-export default App
+export default App;
+
+       
+    
