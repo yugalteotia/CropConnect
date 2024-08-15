@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../../css/SideBar.css'; 
 import '../../css/FarmerPage.css'; 
+import { useAuth } from '../../hooks/useAuth'; 
 
 const FarmerPage = () => {
   const [iframeSrc, setIframeSrc] = useState("");
+  const {user} = useAuth();
+
+  console.log("user ---->",user);
+
+  // useEffect(()=>{
+  //   if (user)
+  // })
 
   return (
     <div className="container-fluid">

@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min"; // Import Bootstrap JS
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../hooks/useAuth";
 import "../css/SignInForm.css";
@@ -9,7 +9,7 @@ import "../css/SignInForm.css";
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
  
@@ -36,7 +36,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div class="login-page">
+    <div className="login-page">
     <div className="login-carousel-container">
       <div className="login-form">
         <h2>Sign In</h2>
@@ -58,7 +58,7 @@ const SignInForm = () => {
           <button type="submit">Sign In</button>
         </form>
         <div className="login-form-footer">
-          <a href="/forgot-password">Forgot password?</a>
+          
           <p>
             New to Crop Connect? <a href="/signup">Sign up now.</a>
           </p>
