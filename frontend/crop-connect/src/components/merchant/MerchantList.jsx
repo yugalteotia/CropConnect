@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from './MerchantCard';
 
-
-const MerchantList = ({ searchQuery }) => {
+const MerchantList = () => {
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -69,35 +68,23 @@ const MerchantList = ({ searchQuery }) => {
       });
   }, []);
 
-  // const filteredCrops = crops.filter(crop =>
-  //   crop.cropName.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
-  const filteredCrops = crops.filter(crop =>
-    (crop.cropName || '').toLowerCase().includes((searchQuery || '').toLowerCase())
-  );
-  
-  
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="flex flex-wrap justify-center">
-    {filteredCrops.length > 0 ? (
-        filteredCrops.map((crop) => (
-          <Card
-            key={crop.id}
-            image={crop.imageUrl}  // URL to the crop image
-            title={crop.cropName}  // Name of the crop
-            price={crop.price}     // Price of the crop
-            qty={crop.quantity}   // Display quantity (or use differently if needed)
-            ctg={crop.categoryName}  // Display category name
-            reviews={crop.farmerName}  // Farmer's name
-          />
-        ))
-      ) : (
-        <p>No crops found.</p>
-      )}
+      
+      {crops.map((crop) => (
+        <Card
+          key={crop.id}
+          image={crop.imageUrl}  
+          title={crop.cropName}  
+          price={crop.price}    
+          qty={crop.quantity}   
+          ctg={crop.categoryName}  
+          reviews={crop.farmerName}  
+        />
+      ))}
     </div>
   );
 };
