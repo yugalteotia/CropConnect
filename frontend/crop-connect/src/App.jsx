@@ -7,6 +7,8 @@ import Merchant from "./components/merchant/Merchant";
 import Footer from "./components/home/Footer";
 import AboutUs from "./components/AboutUs";
 import SignInForm from "./components/SignInForm";
+import FarmerPage from "./components/farmer/FarmerPage";
+import ContactUs from "./components/contactUs/ContactUs"
 
 
 const ConditionalNavigationBar = () => {
@@ -25,7 +27,7 @@ function App() {
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/merchant" element={<Merchant />} />
           <Route path="/farmer" element={<FarmerPage />} />
-          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/cart" element={<CartPage />} />
           
         </Routes>
