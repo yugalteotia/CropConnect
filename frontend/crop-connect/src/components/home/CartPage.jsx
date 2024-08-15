@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa"; 
 import productsData from "../Json/products.json";

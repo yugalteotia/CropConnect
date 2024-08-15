@@ -1,17 +1,4 @@
-import React, {useState,useEffect} from 'react'
-// import NavigationBar from './NavigationBar'
-// import CarouselComp from './CarouselComp'
-// import 'bootstrap/dist/css/bootstrap.min.css'; 
-// import axios from 'axios';
-// import Footer from './Footer';
-// import GovernmentSchemeTable from './GovernmentSchemeTable';
-// import Hero from './Hero';
-
-// import React from 'react';
-import NavigationBar from './NavigationBar';
-import CarouselComp from './CarouselComp';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import Footer from './Footer';
 import GovernmentSchemeTable from './GovernmentSchemeTable';
 import Hero from './Hero';
 
