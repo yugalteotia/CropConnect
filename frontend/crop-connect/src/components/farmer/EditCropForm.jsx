@@ -57,7 +57,7 @@ const EditCropForm = ({ cropData, categoriesName, onUpdate, onCancel }) => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cropQuantity">
-          Quantity <span style={{ color: 'red' }}>*</span>
+          Quantity
         </label>
         <input
           name="cropQuantity"
@@ -69,7 +69,7 @@ const EditCropForm = ({ cropData, categoriesName, onUpdate, onCancel }) => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cropPrice">
-          Price <span style={{ color: 'red' }}>*</span>
+          Price
         </label>
         <input
           name="cropPrice"
