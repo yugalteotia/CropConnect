@@ -73,15 +73,16 @@ const MerchantList = () => {
 
   return (
     <div className="flex flex-wrap justify-center">
+      
       {crops.map((crop) => (
         <Card
           key={crop.id}
-          image={crop.imageUrl}  // URL to the crop image
-          title={crop.cropName}  // Name of the crop
-          price={crop.price}     // Price of the crop
-          qty={crop.quantity}   // Display quantity (or use differently if needed)
-          ctg={crop.categoryName}  // Display category name
-          reviews={crop.farmerName}  // Farmer's name
+          image={crop.imageUrl}  
+          title={crop.cropName}  
+          price={crop.price}    
+          qty={crop.quantity}   
+          ctg={crop.categoryName}  
+          reviews={crop.farmerName}  
         />
       ))}
     </div>

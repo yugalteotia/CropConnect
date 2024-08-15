@@ -16,9 +16,8 @@ import GovernmentSchemeTable from './GovernmentSchemeTable';
 import Hero from './Hero';
 
 const pageStyles = {
-  backgroundColor: '#d4edda', // Light green background color
-  minHeight: '100vh', // Ensure the background covers the entire viewport height
-  padding: '20px', // Optional: Add some padding around the content
+  backgroundColor: '#d4edda',
+  minHeight: '100vh', 
 };
 
 function Home() {
@@ -27,7 +26,6 @@ function Home() {
             <Hero />
             <hr className="my-8 border-t-2 border-gray-700" />
             <GovernmentSchemeTable />
-            {/* <Footer /> */}
         </div>
     );
 }
