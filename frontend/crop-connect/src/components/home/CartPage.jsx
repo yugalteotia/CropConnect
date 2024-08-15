@@ -131,18 +131,6 @@ export default CartPage;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState } from "react";
 // import { Card, Button, Form } from "react-bootstrap";
 // import { FaTrash } from "react-icons/fa"; 
