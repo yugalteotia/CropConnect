@@ -30,6 +30,7 @@ function NavigationBar() {
         >
           Sign In
         </Button>
+    
       </Nav>
     </Navbar>
   );

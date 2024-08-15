@@ -70,6 +70,7 @@ const FarmerPage = () => {
         </main>
       </div>
     </div>
+
   );
 };
 
