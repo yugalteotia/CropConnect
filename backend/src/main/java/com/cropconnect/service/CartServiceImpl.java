@@ -54,7 +54,7 @@ public class CartServiceImpl implements CartService {
         try {
             cart = cartRepository.findByMerchant(merchant).get();
         } catch (NoSuchElementException e) {
-            cart = new Cart();
+            cart = new Cart(); 
 //            cart.setId();
 //            SetCreatedDate
         }

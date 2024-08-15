@@ -49,7 +49,7 @@ public class CropController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<ApiResponse> updateCrop(@PathVariable Integer id, @RequestBody CropDTO cropDTO){
-		
+		System.out.println("DATA FROM REACT "+ cropDTO.getQuantity() +" "+cropDTO.getPrice());
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(cropService.updateCrop(id, cropDTO));
 	}

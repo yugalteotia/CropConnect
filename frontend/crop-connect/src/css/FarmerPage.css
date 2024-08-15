@@ -1,0 +1,8 @@
+/* In your SideBar.css or another relevant CSS file */
+
+.iframe-container {
+    border-radius: 8px; /* Rounded corners for the iframe container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a card-like appearance */
+    overflow: hidden; /* Hide overflow to maintain rounded corners */
+  }
+  

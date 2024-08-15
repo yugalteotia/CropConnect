@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa"; 
 import productsData from "../Json/products.json";
 
 const CartPage = () => {
-  
   const [products, setProducts] = useState(productsData);
   const [quantities, setQuantities] = useState(
     productsData.reduce((acc, product) => {
@@ -12,7 +11,6 @@ const CartPage = () => {
       return acc;
     }, {})
   );
-
 
   const handleQuantityChange = (id, increment) => {
     setQuantities((prevQuantities) => {
@@ -24,11 +22,9 @@ const CartPage = () => {
     });
   };
 
-
   const handleRemoveProduct = (id) => {
     setProducts(products.filter((product) => product.id !== id));
   };
-
 
   const totalPrice = products.reduce(
     (acc, product) => acc + product.price * quantities[product.id],
@@ -36,48 +32,67 @@ const CartPage = () => {
   );
 
   return (
-    <Card className="p-4"  style={{ backgroundImage: `url('/images/farm.jpg')`,maxWidth: "500px", margin: "auto" ,backgroundColor: "#f8f9fa"}}>
-   
+    <Card className="p-4" 
+      style={{ 
+        backgroundImage: `url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/logo.png')`, 
+        maxWidth: "600px", 
+        margin: "auto", 
+        backgroundColor: "#f8f9fa", 
+        backgroundSize: "cover",
+        boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)", 
+        borderRadius: "15px"
+      }}>
       <Card.Body>
         {products.map((product) => (
-          <div key={product.id}>
+          <div key={product.id} className="mb-4" style={{ width: "100%" }}>
             <div className="d-flex align-items-center mb-3">
               <img
                 src={product.image}
                 alt={product.name}
                 className="me-3"
-                style={{ width: "60px", height: "60px", objectFit: "cover" }}
+                style={{ 
+                  width: "60px", 
+                  height: "60px", 
+                  objectFit: "cover", 
+                  borderRadius: "10px", 
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
+                }}
               />
               <div className="flex-grow-1">
-                <h5 className="mb-1">{product.name}</h5>
+                <h5 className="mb-1" style={{ fontWeight: "bold" }}>{product.name}</h5>
                 <p className="text-muted mb-0">{product.location}</p>
               </div>
-              <FaTrash onClick={() => handleRemoveProduct(product.id)} />
+              <FaTrash 
+                onClick={() => handleRemoveProduct(product.id)} 
+                style={{ cursor: "pointer", color: "#dc3545" }}
+              />
             </div>
 
-            <div className="border-bottom pb-3 mb-3">
+            <div className="border-bottom pb-3">
               <div className="d-flex justify-content-between align-items-center">
                 <div>
-                  <h6>{product.type}</h6>
+                  <h6 className="mb-0" style={{ fontStyle: "italic" }}>{product.type}</h6>
                 </div>
                 <div className="d-flex align-items-center">
                   <Button
-                    variant="light"
+                    variant="outline-dark"
                     className="px-2 py-0"
                     onClick={() => handleQuantityChange(product.id, -1)}
+                    style={{ borderRadius: "5px" }}
                   >
                     -
                   </Button>
-                  <span className="px-2">{quantities[product.id]}</span>
+                  <span className="px-3" style={{ fontWeight: "bold" }}>{quantities[product.id]}</span>
                   <Button
-                    variant="light"
+                    variant="outline-dark"
                     className="px-2 py-0"
                     onClick={() => handleQuantityChange(product.id, 1)}
+                    style={{ borderRadius: "5px" }}
                   >
                     +
                   </Button>
                   <div className="text-end ms-3">
-                    <p className="mb-0">
+                    <p className="mb-0" style={{ fontWeight: "bold", color: "#28a745" }}>
                       ₹{product.price * quantities[product.id]}
                     </p>
                   </div>
@@ -87,7 +102,7 @@ const CartPage = () => {
           </div>
         ))}
         <div className="border-bottom pb-3 mb-3">
-          <h6>Bill Details</h6>
+          <h6 style={{ fontWeight: "bold" }}>Bill Details</h6>
           <div className="d-flex justify-content-between">
             <p className="mb-1">Item Total</p>
             <p className="mb-1">₹{totalPrice}</p>
@@ -99,11 +114,11 @@ const CartPage = () => {
         </div>
 
         <div className="d-flex justify-content-between align-items-center">
-          <h5>TO PAY</h5>
-          <h5>₹{totalPrice + 4}</h5>
+          <h5 style={{ fontWeight: "bold" }}>TO PAY</h5>
+          <h5 style={{ fontWeight: "bold", color: "#28a745" }}>₹{totalPrice + 4}</h5>
         </div>
         <br />
-        <Button variant="success">
+        <Button variant="success" className="w-100" style={{ borderRadius: "10px" }}>
           <h5>PAY</h5>
         </Button>
       </Card.Body>
@@ -115,89 +130,59 @@ export default CartPage;
 
 
 
-///// code for backend /////
-// import React, { useState, useEffect } from "react";
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from "react";
 // import { Card, Button, Form } from "react-bootstrap";
-// import { FaTrash } from "react-icons/fa";
+// import { FaTrash } from "react-icons/fa"; 
+// import productsData from "../Json/products.json";
 
 // const CartPage = () => {
-//   const [products, setProducts] = useState([]);
-//   const [loading, setLoading] = useState(true);
+  
+//   const [products, setProducts] = useState(productsData);
+//   const [quantities, setQuantities] = useState(
+//     productsData.reduce((acc, product) => {
+//       acc[product.id] = 1; 
+//       return acc;
+//     }, {})
+//   );
 
 
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       try {
-//         const response = await fetch("/api/products"); 
-//         const data = await response.json();
-//         setProducts(data);
-//       } catch (error) {
-//         console.error("Error fetching products:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchProducts();
-//   }, []);
-
-
-//   const handleQuantityChange = async (id, increment) => {
-//     try {
-//       const productToUpdate = products.find((product) => product.id === id);
-//       const newQuantity = productToUpdate.quantity + increment;
-
-//       if (newQuantity < 1) return;
-
-//       const response = await fetch(`/api/products/${id}`, {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ quantity: newQuantity }),
-//       });
-
-//       if (response.ok) {
-     
-//         setProducts((prevProducts) =>
-//           prevProducts.map((product) =>
-//             product.id === id ? { ...product, quantity: newQuantity } : product
-//           )
-//         );
-//       }
-//     } catch (error) {
-//       console.error("Error updating quantity:", error);
-//     }
+//   const handleQuantityChange = (id, increment) => {
+//     setQuantities((prevQuantities) => {
+//       const newQuantity = prevQuantities[id] + increment;
+//       return {
+//         ...prevQuantities,
+//         [id]: newQuantity > 0 ? newQuantity : 1, 
+//       };
+//     });
 //   };
 
 
-//   const handleRemoveProduct = async (id) => {
-//     try {
-//       const response = await fetch(`/api/products/${id}`, {
-//         method: "DELETE",
-//       });
-
-//       if (response.ok) {
-
-//         setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
-//       }
-//     } catch (error) {
-//       console.error("Error removing product:", error);
-//     }
+//   const handleRemoveProduct = (id) => {
+//     setProducts(products.filter((product) => product.id !== id));
 //   };
 
 
 //   const totalPrice = products.reduce(
-//     (acc, product) => acc + product.price * product.quantity,
+//     (acc, product) => acc + product.price * quantities[product.id],
 //     0
 //   );
 
-//   if (loading) {
-//     return <p>Loading...</p>; 
-//   }
-
 //   return (
-//     <Card className="p-4" style={{ maxWidth: "500px", margin: "auto" }}>
+//     <Card className="p-4"  style={{ backgroundImage: `url('/images/farm.jpg')`,maxWidth: "500px", margin: "auto" ,backgroundColor: "#f8f9fa"}}>
+   
 //       <Card.Body>
 //         {products.map((product) => (
 //           <div key={product.id}>
@@ -212,10 +197,7 @@ export default CartPage;
 //                 <h5 className="mb-1">{product.name}</h5>
 //                 <p className="text-muted mb-0">{product.location}</p>
 //               </div>
-//               <FaTrash
-//                 style={{ cursor: "pointer" }}
-//                 onClick={() => handleRemoveProduct(product.id)}
-//               />
+//               <FaTrash onClick={() => handleRemoveProduct(product.id)} />
 //             </div>
 
 //             <div className="border-bottom pb-3 mb-3">
@@ -231,7 +213,7 @@ export default CartPage;
 //                   >
 //                     -
 //                   </Button>
-//                   <span className="px-2">{product.quantity}</span>
+//                   <span className="px-2">{quantities[product.id]}</span>
 //                   <Button
 //                     variant="light"
 //                     className="px-2 py-0"
@@ -241,7 +223,7 @@ export default CartPage;
 //                   </Button>
 //                   <div className="text-end ms-3">
 //                     <p className="mb-0">
-//                       ₹{product.price * product.quantity}
+//                       ₹{product.price * quantities[product.id]}
 //                     </p>
 //                   </div>
 //                 </div>
@@ -249,7 +231,6 @@ export default CartPage;
 //             </div>
 //           </div>
 //         ))}
-
 //         <div className="border-bottom pb-3 mb-3">
 //           <h6>Bill Details</h6>
 //           <div className="d-flex justify-content-between">

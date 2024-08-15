@@ -9,32 +9,46 @@ import AboutUs from "./components/AboutUs";
 import SignInForm from "./components/SignInForm";
 import FarmerPage from "./components/farmer/FarmerPage";
 import ContactUs from "./components/contactUs/ContactUs"
+import './css/NavigationBar.css'
+import CropFormPage from "./components/farmer/CropFormPage";
+import CropListPage from "./components/farmer/CropListPage";
+
 
 
 const ConditionalNavigationBar = () => {
   const location = useLocation();
-  return location.pathname !== "/" ? <NavigationBar /> : null;
+  const excludePaths = ["/", "/crop-form", "/crop-list"];
+
+  // Check if the current path is not in the excludePaths array
+  return !excludePaths.includes(location.pathname) ? <NavigationBar className="fixed-nav fixed" /> : null;
+};
+
+const ConditionalFooter = () => {
+  const location = useLocation();
+  const excludePaths = ["/crop-form", "/crop-list"];
+
+  // Check if the current path is not in the excludePaths array
+  return !excludePaths.includes(location.pathname) ? <Footer /> : null;
 };
 
 function App() {
   return (
     <Router>
-      <ConditionalNavigationBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/signin" element={<SignInForm />} />
-          <Route path="/merchant" element={<Merchant />} />
-          <Route path="/farmer" element={<FarmerPage />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/cart" element={<CartPage />} />
-          
-        </Routes>
-        <Footer />
-      </Router>
-      // </>
-    )
+      <ConditionalNavigationBar classNam />
+      <Routes>
+       <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/signin" element={<SignInForm />} />
+        {/* <Route path="/cart" element={<CartPage />} /> */}
+        <Route path="/merchant" element={<Merchant />} /> 
+        <Route path="/farmer" element={<FarmerPage />} /> 
+        <Route path="/crop-form" element={<CropFormPage  />}/>
+        <Route path="/crop-list" element={<CropListPage />} />
+       </Routes>
+       <ConditionalFooter />
+    </Router>
+  );
 }
 
 export default App;
