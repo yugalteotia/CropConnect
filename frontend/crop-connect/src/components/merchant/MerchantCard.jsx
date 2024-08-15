@@ -86,5 +86,3 @@ export default MerchantCard;
 
 
 
-
-i
