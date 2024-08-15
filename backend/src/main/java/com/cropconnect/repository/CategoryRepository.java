@@ -17,6 +17,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
 
     @Query("SELECT c FROM Category c WHERE c.categoryName LIKE %:keyword%")
-    List<CategoryDTO> searchByCategoryName(@Param("keyword") String keyword);
+    List<Category> searchByCategoryName(@Param("keyword") String keyword);
 
 }

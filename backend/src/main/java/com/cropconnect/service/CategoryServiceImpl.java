@@ -1,8 +1,6 @@
 package com.cropconnect.service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +72,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDTO> searchCategories(String keyword){
     
-    		return categoryRepository.searchByCategoryName(keyword);
+    		List<Category> categories = categoryRepository.searchByCategoryName(keyword);
+    	    return categories.stream()
+	                .map(category -> {
+	                    CategoryDTO categoryDTO = modelMapper.map(category, CategoryDTO.class);
+	                    return categoryDTO;
+	                })
+	                .toList();
     }   
     
     
