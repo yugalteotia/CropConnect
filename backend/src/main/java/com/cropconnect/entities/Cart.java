@@ -24,22 +24,13 @@ public class Cart extends BaseEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "crop_id", nullable = false)
-    private Crop crop;
-
-//    @NotNull
-//    @Column(name = "quantity", nullable = false)
-//    private Integer quantity;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "merchant_id", nullable = false)
     private Merchant merchant;
     
     
 
 //    mapping cartItem
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<CartItem> items = new ArrayList<>();
 
 }
