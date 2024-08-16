@@ -13,7 +13,7 @@ function NavigationBar() {
 
   const handleLogout = () => {
     logout();
-    navigate('/'); // Redirect to the sign-in page after logout
+    navigate('/'); // Redirect after logout
   };
 
   console.log("USER IN NAVIGATION BAR----->",user)
@@ -33,12 +33,9 @@ function NavigationBar() {
   else{
     nameFromEmail = name;
   }
-  // const nameFromEmail = email.replace("@gmail.com",'')
-
-  
 
   return (
-    <Navbar bg="light" expand="lg" className="py-1">
+    <Navbar bg="light" expand="lg" className="py-1 fixed-top">
       <Navbar.Brand href="/" className="text-lg font-weight-bold ml-2">
         CropConnect
       </Navbar.Brand>
@@ -61,7 +58,7 @@ function NavigationBar() {
             <Button
               onClick={handleLogout}
               className="text-base whitespace-nowrap font-weight-bold mx-1 px-2 py-0 rounded-pill bg-danger text-white border-0 shadow-sm"
-              style={{ display: 'block', transition: 'background-color 0.3s, transform 0.2s' }}
+              style={{ display: 'block', transition: 'background-color 0.3s, transform 0.2s',width:'100px' }}
             >
               Logout
             </Button>

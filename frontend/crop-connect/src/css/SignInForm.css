@@ -4,20 +4,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(2, 44, 2);  */
-
-  /* background: url('C:/Users/Asmita/Documents/CDAC_PROJECT/CropConnect/frontend/crop-connect/src/assets/signupPageBgImg.jpg') no-repeat center center/cover; */
+  
   background: url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/signupPageBgImg.jpg') no-repeat center center/cover;
 
 
 }
 
 .login-form {
-  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white to match the card style */
+  background-color: rgba(255, 255, 255, 0.8); 
   border-radius: 10px;
   padding: 2rem;
   width: 100%;
-  max-width: 500px; /* Adjust width as needed */
+  max-width: 500px; 
 }
 
 .login-form h2 {
@@ -46,7 +44,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Slightly darker blue on hover */
+  background-color: #0056b3;
 }
 
 .login-form-footer {

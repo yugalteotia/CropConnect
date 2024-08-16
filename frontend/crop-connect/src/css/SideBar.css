@@ -2,20 +2,20 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Adjust the width as needed */
-    height: 100vh; /* Full height of the viewport */
-    overflow-y: auto; /* Scroll if content overflows */
-    background-color: #343a40; /* Dark background color */
-    color: #fff; /* White text color */
-    padding: 15px; /* Padding for spacing */
+    width: 250px; 
+    height: 100vh; 
+    overflow-y: auto;
+    background-color: #343a40;
+    color: #fff; 
+    padding: 15px;
   }
   
   .sidebar-nav-link {
     color: #fff;
-    margin-bottom: 10px; /* Space between links */
+    margin-bottom: 10px;
   }
   
   .nav-link:hover {
-    background-color: #495057; /* Darker background on hover */
+    background-color: #495057; 
   }
   

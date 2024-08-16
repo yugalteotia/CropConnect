@@ -4,7 +4,6 @@
     left: 0;
     width: 100%; /* Full width */
     z-index: 1000; /* Ensure it stays above other content */
-    background-color: #fff; /* Background color */
-    border-bottom: 1px solid #ddd; /* Optional: add a border */
-    /* You might want to add some padding or margin to the body or main content to prevent overlap */
+    background-color: #fff; 
+    border-bottom: 1px solid #ddd; 
   }

@@ -37,7 +37,7 @@ const CartPage = () => {
     <Card
       className="cart-card"
       style={{
-        backgroundImage: `url('C:/Users/Asmita/Documents/CDAC_PROJECT/CropConnect/frontend/crop-connect/src/assets/logo.png')`,
+        backgroundImage: `url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/logo.png')`,
       }}
     >
       <Card.Body>
