@@ -21,10 +21,17 @@ const FarmerPage = () => {
         {/* Sidebar */}
         <nav id="sidebar" className="bg-dark sidebar relative mt-20">
           <div className="position-sticky">
+<<<<<<< HEAD
             <h4 className="text-center mt-3 text-xl text-white mb-3">Side Menu</h4>
             <hr className="mb-2"/>
             <ul className="nav flex-column items-center ">
               <li className="nav-item">
+=======
+            <h4 className="text-center mt-3 text-xl text-white">Side Menu</h4>
+            <hr />
+            <ul className="nav flex-column">
+              {/* <li className="nav-item">
+>>>>>>> e8121ed96389ad5de05a2c8c75c069657793c5ba
                 <Link
                   className="nav-link mb-4 mt-4"
                   to="#"
@@ -32,7 +39,7 @@ const FarmerPage = () => {
                 >
                   <i className="bi bi-person"></i> Profile
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link
                   className="nav-link mb-4"

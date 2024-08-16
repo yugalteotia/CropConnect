@@ -22,7 +22,11 @@ function Merchant() {
 
   return (
     <>
+<<<<<<< HEAD
     <SearchBar onSearch={handleSearch} />
+=======
+   
+>>>>>>> e8121ed96389ad5de05a2c8c75c069657793c5ba
     <div className="p-10 bg-gray-100 min-h-screen flex justify-center">
       <MerchantList cropsData={cropData} searchQuery={searchQuery} />
     </div>
