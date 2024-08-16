@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cropconnect.dto.ApiResponse;
 import com.cropconnect.dto.CropDTO;
+import com.cropconnect.dto.OrderDTO;
 
 public interface CropService {
 
@@ -15,4 +16,6 @@ public interface CropService {
 	List<CropDTO> searchCrops(String keyword);
 	List<CropDTO> getAllCropsSortedAsc(String sortBy);
 	List<CropDTO> getAllCropsSortedDesc(String sortBy);
+	List<CropDTO> getCropsOfFarmer(Integer farmerId);
+	
 }

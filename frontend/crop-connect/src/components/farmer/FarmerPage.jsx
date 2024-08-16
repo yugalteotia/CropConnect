@@ -19,7 +19,7 @@ const FarmerPage = () => {
     <div className="container-fluid">
       <div className="row">
         {/* Sidebar */}
-        <nav id="sidebar" className="bg-dark sidebar mt-12">
+        <nav id="sidebar" className="bg-dark sidebar relative mt-20">
           <div className="position-sticky">
             <h4 className="text-center mt-3 text-xl text-white mb-3">Side Menu</h4>
             <hr className="mb-2"/>
@@ -44,13 +44,14 @@ const FarmerPage = () => {
               </li>
               <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4"
                   to="#"
                   onClick={() => setIframeSrc("/crop-list")}
                 >
                   <i className="bi bi-gear"></i> Manage Crops
                 </Link>
               </li>
+              
             </ul>
           </div>
         </nav>

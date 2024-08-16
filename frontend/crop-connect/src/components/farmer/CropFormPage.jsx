@@ -61,12 +61,12 @@ const CropFormPage = () => {
   
 
   return (
-    <div className="card mt-4">
+    <div className="card">
       <div className="card-header"></div>
       <div className="card-body" ref={formRef}>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="cropName" className="form-label">Crop Name</label>
+            <label htmlFor="cropName" className="form-label">Crop Name <span className="text-red-500">*</span></label>
             <input
               type="text"
               className="form-control"
@@ -78,7 +78,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="price" className="form-label">Price</label>
+            <label htmlFor="price" className="form-label">Price <span className="text-red-500">*</span></label>
             <input
               type="text"
               className="form-control"
@@ -101,7 +101,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="quantity" className="form-label">Quantity</label>
+            <label htmlFor="quantity" className="form-label">Quantity <span className="text-red-500">*</span></label>
             <input
               type="number"
               className="form-control"
@@ -113,7 +113,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="categoryId" className="form-label">Category</label>
+            <label htmlFor="categoryId" className="form-label">Category <span className="text-red-500">*</span></label>
             <select
               className="form-control"
               id="categoryId"
