@@ -8,7 +8,7 @@ export const useFormValues = () => {
     imageUrl: "",
     quantity: "",
     categoryId: "",
-    farmerId: 1,
+    farmerId: 10,
   });
 
   return { formValues, setFormValues };

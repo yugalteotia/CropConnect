@@ -10,7 +10,7 @@ const CropBox = ({
   onDelete 
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[400px] mb-6 m-10"> 
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden w-[350px] mb-6 m-10"> 
       {/* Crop Name with Dark Green Background */}
       <div className="bg-green-500 p-4">
         <h1 className="text-3xl font-bold text-black">

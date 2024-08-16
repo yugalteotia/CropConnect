@@ -4,6 +4,7 @@ import '../../css/SideBar.css';
 import '../../css/FarmerPage.css'; 
 import { useAuth } from '../../hooks/useAuth'; 
 
+
 const FarmerPage = () => {
   const [iframeSrc, setIframeSrc] = useState("");
   const {user} = useAuth();
@@ -18,14 +19,21 @@ const FarmerPage = () => {
     <div className="container-fluid">
       <div className="row">
         {/* Sidebar */}
-        <nav id="sidebar" className="bg-dark sidebar mt-12">
+        <nav id="sidebar" className="bg-dark sidebar relative mt-20">
           <div className="position-sticky">
+<<<<<<< HEAD
+            <h4 className="text-center mt-3 text-xl text-white mb-3">Side Menu</h4>
+            <hr className="mb-2"/>
+            <ul className="nav flex-column items-center ">
+              <li className="nav-item">
+=======
             <h4 className="text-center mt-3 text-xl text-white">Side Menu</h4>
             <hr />
             <ul className="nav flex-column">
               {/* <li className="nav-item">
+>>>>>>> e8121ed96389ad5de05a2c8c75c069657793c5ba
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4 mt-4"
                   to="#"
                   onClick={() => setIframeSrc("/farmer-profile")}
                 >
@@ -34,7 +42,7 @@ const FarmerPage = () => {
               </li> */}
               <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4"
                   to="#"
                   onClick={() => setIframeSrc("/crop-form")}
                 >
@@ -43,13 +51,14 @@ const FarmerPage = () => {
               </li>
               <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4"
                   to="#"
                   onClick={() => setIframeSrc("/crop-list")}
                 >
                   <i className="bi bi-gear"></i> Manage Crops
                 </Link>
               </li>
+              
             </ul>
           </div>
         </nav>

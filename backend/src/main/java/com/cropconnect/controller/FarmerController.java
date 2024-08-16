@@ -70,4 +70,10 @@ public class FarmerController {
         List<FarmerDTO> topFarmers = farmerService.getTop10FarmersByRating();
         return ResponseEntity.status(HttpStatus.OK).body(topFarmers);
     }
+    
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<FarmerDTO> getFarmerByUserId(@PathVariable Integer userId) {
+        FarmerDTO farmerDTO = farmerService.getFarmerByUserId(userId);
+        return ResponseEntity.ok(farmerDTO);
+    }
 }

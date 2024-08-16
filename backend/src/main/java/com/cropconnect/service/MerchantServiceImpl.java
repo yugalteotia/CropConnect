@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.ApiResponse;
+import com.cropconnect.dto.FarmerDTO;
 import com.cropconnect.dto.MerchantUpdateDTO;
 import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.entities.Address;
+import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Merchant;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
@@ -76,5 +78,19 @@ public class MerchantServiceImpl implements MerchantService {
 		merchantRepository.delete(merchant);
 		 return new ApiResponse("Merchant and associated address deleted successfully");
 	}
+	
+	@Override
+    public MerchantDTO getMerchantByUserId(Integer userId) {
+        // Fetch the User entity
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        // Fetch the Farmer associated with the User
+        Merchant merchant = merchantRepository.findByUser(user)
+                .orElseThrow(() -> new ResourceNotFoundException("Merchant not found"));
+
+        // Convert Farmer entity to FarmerDTO
+        return modelMapper.map(merchant, MerchantDTO.class);
+    }
 
 }

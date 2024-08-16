@@ -10,4 +10,6 @@ public interface MerchantService {
 	ApiResponse updateMerchant(Integer id, MerchantUpdateDTO merchantUpdateDTO);
 	ApiResponse deleteMarchant(Integer id);
 	
+	MerchantDTO getMerchantByUserId(Integer userId);
+	
 }
