@@ -4,11 +4,10 @@ import axios from 'axios';
 
 const MerchantCard = ({ merchantId, image, title, price, qty, ctg, reviews }) => {
   const [loading, setLoading] = useState(false);
-  // const [navigate, setNavigate] = useNavigate();
+  
 
   const handleAddToCart = async () => {
-    console.log("Merchant ID:", merchantId);  // Debugging line
-    navigate
+
     // Validate merchantId
     // if (!merchantId || isNaN(merchantId)) {
     //   alert("Please login before adding item to cart");

@@ -7,7 +7,7 @@ function CarouselComp() {
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
         <img 
-          className="d-block w-full h-[400px] object-cover" // Set width to 100% and height to 400px
+          className="d-block w-full h-[400px] object-cover" 
           src={slide1}
           alt="First slide"
         />

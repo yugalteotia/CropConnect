@@ -15,8 +15,6 @@ axios.interceptors.response.use(
     (response) => response,
     (error) => {
       if (error.response && error.response.status === 401) {
-        // Token might be expired, handle the redirect or token refresh here
-        // For example, redirect to login page
         window.location.href = '/sigin';
       }
       return Promise.reject(error);
