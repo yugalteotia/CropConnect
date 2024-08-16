@@ -29,7 +29,6 @@ const CropFormPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const payload = {
         ...formValues,
@@ -62,12 +61,12 @@ const CropFormPage = () => {
   
 
   return (
-    <div className="card mt-1">
+    <div className="card mt-4">
       <div className="card-header"></div>
       <div className="card-body" ref={formRef}>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="cropName" className="form-label">Crop Name <span style={{ color: 'red' }}>*</span></label>
+            <label htmlFor="cropName" className="form-label">Crop Name</label>
             <input
               type="text"
               className="form-control"
@@ -79,7 +78,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="price" className="form-label">Price <span style={{ color: 'red' }}>*</span></label>
+            <label htmlFor="price" className="form-label">Price</label>
             <input
               type="text"
               className="form-control"
@@ -91,7 +90,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="imageUrl" className="form-label">Image URL <span style={{ color: 'red' }}>*</span></label>
+            <label htmlFor="imageUrl" className="form-label">Image URL</label>
             <input
               type="text"
               className="form-control"
@@ -102,7 +101,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="quantity" className="form-label">Quantity <span style={{ color: 'red' }}>*</span></label>
+            <label htmlFor="quantity" className="form-label">Quantity</label>
             <input
               type="number"
               className="form-control"
@@ -114,7 +113,7 @@ const CropFormPage = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="categoryId" className="form-label">Category <span style={{ color: 'red' }}>*</span></label>
+            <label htmlFor="categoryId" className="form-label">Category</label>
             <select
               className="form-control"
               id="categoryId"

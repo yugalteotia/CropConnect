@@ -1,10 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { EmailContext } from '../context/EmailContext';
 // import { useNavigate } from 'react-router-dom';
 
 const useAuth = () => {
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState(() =>{
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+  const {setEmail} = useContext(EmailContext);
+  
+  useEffect(() => {
+    // Update localStorage whenever the user state changes
+    console.log("In user in useeffect---->",user)
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+  
  
   const login = async (loginCredentials) => {
     const data = {
@@ -14,13 +29,18 @@ const useAuth = () => {
       }
     };
 
-    console.log("Login data:", data.loginDTO); // Ensure this matches the backend
+    console.log("Login data:", data.loginDTO); 
 
     try {
       const response = await axios.post('/api/auth/login', data.loginDTO);
       console.log('Login successful:', response.data);
       setUser(response.data);
+      setEmail(response.data.email);
+
+      localStorage.setItem('user',JSON.stringify(response.data));
+      localStorage.setItem('userEmail',JSON.stringify(response.data.email));
       return { success: true, userData: response.data };
+
     } catch (error) {
       console.error('Error during login:', error);
       return { success: false, message: error.response?.data?.message || 'Login failed' };
@@ -66,7 +86,15 @@ const useAuth = () => {
     }
   };
 
-  return { login, signUp, user };
+
+  const logout = () => {
+    
+    setUser(null);
+    setEmail(null);
+    localStorage.clear();
+  };
+
+  return { login, signUp, logout, user };
 };
 
 export { useAuth };
