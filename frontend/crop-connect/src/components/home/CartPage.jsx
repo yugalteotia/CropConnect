@@ -34,6 +34,9 @@ const CartPage = () => {
   return (
     <Card className="p-4" 
       style={{ 
+        // backgroundImage: `url('C:\Users\Asmita\Documents\CDAC_PROJECT\CropConnect\frontend\crop-connect\src\assets\logo.png')`, 
+
+        
         backgroundImage: `url('C:/Users/Kshit/Desktop/CropConnect/frontend/crop-connect/src/assets/logo.png')`, 
         maxWidth: "600px", 
         margin: "auto", 
