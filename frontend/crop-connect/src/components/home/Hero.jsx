@@ -38,7 +38,7 @@ const Hero = () => {
                 <div className="px-4 mx-auto sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-10 lg:h-12">
                         <div className="flex-shrink-0">
-                            <a href="/home" title="" className="flex items-center text-xl text-green-500 font-bold">
+                            <a href="/" title="" className="flex items-center text-xl text-green-500 font-bold">
                                 CropConnect
                             </a>
                         </div>
