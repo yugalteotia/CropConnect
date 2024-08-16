@@ -21,7 +21,7 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   // Updated password regex: at least 8 characters, one uppercase, one lowercase, and one number; symbols are optional
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
   // Email regex: does not start with a number and follows a basic email pattern
   const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -35,10 +35,10 @@ const SignUpForm = () => {
       addressLine1 && city && state && country && postalCode && mobileNumber
     ) {
       // Check if password matches the regex pattern
-      if (!passwordRegex.test(password)) {
-        alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.');
-        return;
-      }
+      // if (!passwordRegex.test(password)) {
+      //   alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.');
+      //   return;
+      // }
 
       // Check if email matches the regex pattern
       if (!emailRegex.test(email)) {

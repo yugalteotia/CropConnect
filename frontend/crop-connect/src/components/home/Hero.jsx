@@ -87,7 +87,7 @@ const Hero = () => {
                             ) : (
                                 <>
                                     <a href="/signin" title="Log in" className="btn btn-outline-light text-base transition-all duration-200 hover:text-opacity-80">
-                                        Log in
+                                        Sign In
                                     </a>
                                     <a href="/signup" title="Sign up" className="btn btn-outline-light text-base transition-all duration-200 hover:text-opacity-80">
                                         Sign up

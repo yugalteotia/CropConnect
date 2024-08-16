@@ -13,6 +13,7 @@ const CropFormPage = () => {
       try {
         const response = await axios.get('/api/categories');
         setCategories(response.data);
+        console.log("categories in farmer from ", response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
