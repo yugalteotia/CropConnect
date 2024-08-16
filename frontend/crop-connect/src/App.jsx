@@ -13,6 +13,7 @@ import './css/NavigationBar.css'
 import CropFormPage from "./components/farmer/CropFormPage";
 import CropListPage from "./components/farmer/CropListPage";
 import { EmailProvider } from "./context/EmailContext";
+import ContactUs from "./components/contactUs/ContactUs";
 
 
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/farmer" element={<FarmerPage />} /> 
         <Route path="/crop-form" element={<CropFormPage  />}/>
         <Route path="/crop-list" element={<CropListPage />} />
+        <Route path="/contact-us" element={<ContactUs />} />
        </Routes>
        <ConditionalFooter />
        </EmailProvider>
