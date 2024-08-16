@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cropconnect.dto.ApiResponse;
+import com.cropconnect.dto.CartDTO;
+import com.cropconnect.dto.CategoryDTO;
 import com.cropconnect.dto.CropDTO;
+import com.cropconnect.dto.OrderDTO;
 import com.cropconnect.service.CropService;
 
 @RestController
@@ -80,5 +83,13 @@ public class CropController {
 		
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(cropService.getAllCropsSortedDesc (sortBy));
-	}
+	}	
+	
+	
+	@GetMapping("/farmers/{farmerId}")
+	public ResponseEntity<List<CropDTO>> getCropsOfFarmer(@PathVariable Integer farmerId) {
+		List<CropDTO> cropsOfFarmer = cropService.getCropsOfFarmer(farmerId);
+		return new ResponseEntity<>(cropsOfFarmer, HttpStatus.OK);
+	}		
+	
 }

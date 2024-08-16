@@ -38,5 +38,6 @@ public class CropDTO {
     @NotNull
     private Integer farmerId; // Use farmerId instead of Farmer
     
+    //private  FarmerDTO farmerDto;
 }
 

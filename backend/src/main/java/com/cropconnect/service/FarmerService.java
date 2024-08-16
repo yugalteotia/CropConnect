@@ -3,6 +3,7 @@ package com.cropconnect.service;
 import java.util.List;
 
 import com.cropconnect.dto.ApiResponse;
+import com.cropconnect.dto.CropDTO;
 import com.cropconnect.dto.FarmerDTO;
 
 public interface FarmerService {
@@ -21,6 +22,8 @@ public interface FarmerService {
 	List<FarmerDTO> getFarmersSortedDesc(String sortBy);
 
 	List<FarmerDTO> getTop10FarmersByRating();
+	
+	FarmerDTO getFarmerByUserId(Integer userId);
 	
 	
     

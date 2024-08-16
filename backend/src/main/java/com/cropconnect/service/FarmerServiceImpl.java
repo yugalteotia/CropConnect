@@ -1,6 +1,7 @@
 package com.cropconnect.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.AddressDTO;
 import com.cropconnect.dto.ApiResponse;
+import com.cropconnect.dto.CropDTO;
 import com.cropconnect.dto.FarmerDTO;
 import com.cropconnect.dto.UserDTO;
 import com.cropconnect.entities.Address;
+import com.cropconnect.entities.Crop;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
@@ -130,6 +133,21 @@ public class FarmerServiceImpl implements FarmerService {
                          .map(farmer -> modelMapper.map(farmer, FarmerDTO.class))
                          .toList();
     }
+    
+    @Override
+    public FarmerDTO getFarmerByUserId(Integer userId) {
+        // Fetch the User entity
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        // Fetch the Farmer associated with the User
+        Farmer farmer = farmerRepository.findByUser(user)
+                .orElseThrow(() -> new ResourceNotFoundException("Farmer not found"));
+
+        // Convert Farmer entity to FarmerDTO
+        return modelMapper.map(farmer, FarmerDTO.class);
+    }
+
     
     
     
