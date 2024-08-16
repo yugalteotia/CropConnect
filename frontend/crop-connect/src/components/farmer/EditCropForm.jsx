@@ -27,7 +27,7 @@ const EditCropForm = ({ cropData, categoriesName, onUpdate, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data---->",formData)
+    console.log("Form data before update:", formData);
     onUpdate(formData);
   };
 

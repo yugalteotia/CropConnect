@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import '../../css/SideBar.css'; 
 import '../../css/FarmerPage.css'; 
 
+
 const FarmerPage = () => {
   const [iframeSrc, setIframeSrc] = useState("");
 
@@ -12,12 +13,12 @@ const FarmerPage = () => {
         {/* Sidebar */}
         <nav id="sidebar" className="bg-dark sidebar mt-12">
           <div className="position-sticky">
-            <h4 className="text-center mt-3 text-xl text-white">Side Menu</h4>
-            <hr />
-            <ul className="nav flex-column">
+            <h4 className="text-center mt-3 text-xl text-white mb-3">Side Menu</h4>
+            <hr className="mb-2"/>
+            <ul className="nav flex-column items-center ">
               <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4 mt-4"
                   to="#"
                   onClick={() => setIframeSrc("/farmer-profile")}
                 >
@@ -26,7 +27,7 @@ const FarmerPage = () => {
               </li>
               <li className="nav-item">
                 <Link
-                  className="nav-link"
+                  className="nav-link mb-4"
                   to="#"
                   onClick={() => setIframeSrc("/crop-form")}
                 >
