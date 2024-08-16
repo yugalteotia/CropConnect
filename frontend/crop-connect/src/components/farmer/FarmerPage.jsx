@@ -23,7 +23,7 @@ const FarmerPage = () => {
             <h4 className="text-center mt-3 text-xl text-white">Side Menu</h4>
             <hr />
             <ul className="nav flex-column">
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   className="nav-link"
                   to="#"
@@ -31,7 +31,7 @@ const FarmerPage = () => {
                 >
                   <i className="bi bi-person"></i> Profile
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link
                   className="nav-link"

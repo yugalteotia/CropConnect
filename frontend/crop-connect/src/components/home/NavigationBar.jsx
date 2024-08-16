@@ -56,7 +56,7 @@ function NavigationBar() {
         {name ? (
           <>
           <Navbar.Text className="text-center font-weight-bold">
-            Welcome, <span>{email.length != 0 ? nameFromEmail : name} </span>
+            Welcome, <span>{name.length != 0 ? nameFromEmail : name} </span>
           </Navbar.Text>
             <Button
               onClick={handleLogout}
