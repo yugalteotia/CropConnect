@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import "../css/SignUpForm.css";
 import { useNavigate } from 'react-router-dom';
-
+import { Navbar, Nav, Button } from 'react-bootstrap';
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,7 +45,7 @@ const SignUpForm = () => {
         alert('Email must start with a letter and be in a valid format. Example: user@example.com');
         return;
       }
-
+      
       const data = {
         firstName,
         lastName,

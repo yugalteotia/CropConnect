@@ -7,6 +7,8 @@ const MerchantList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  
+    
   useEffect(() => {
     // Fetch crops data
     axios.get('/api/crops')
