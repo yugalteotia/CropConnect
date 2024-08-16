@@ -65,7 +65,7 @@ const Hero = () => {
                                     ) :
                                      (
                                         <a 
-                                        href="/merchant" 
+                                        href="/farmer" 
                                         title="Merchant Page" 
                                         className="btn  text-white btn-outline-light text-base rounded-lg px-4 py-2 transition-all duration-200 whitespace-nowrap hover:bg-green-800"
                                     >

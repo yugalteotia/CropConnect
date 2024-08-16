@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cropconnect.dto.LoginDTO;
 import com.cropconnect.dto.UserDTO;
 import com.cropconnect.entities.User;
+import com.cropconnect.exception.ResourceNotFoundException;
 import com.cropconnect.repository.UserRepository;
 
 @Service
@@ -24,7 +25,8 @@ public class AuthServiceImpl implements AuthService {
 	public UserDTO authenticate(LoginDTO loginDTO) {
 		 System.out.println(loginDTO.getEmail());
 		 System.out.println(loginDTO.getPassword());
-		  User user = userRepository.findByEmail(loginDTO.getEmail());
+		  User user = userRepository.findByEmail(loginDTO.getEmail())
+				  .orElseThrow(()-> new ResourceNotFoundException("User not found"));
 	        if (user != null && loginDTO.getPassword().equals(user.getPassword())) {
 	            return modelMapper.map(user, UserDTO.class);
 	        }
