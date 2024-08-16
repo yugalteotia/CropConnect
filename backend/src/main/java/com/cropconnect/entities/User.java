@@ -1,5 +1,6 @@
 package com.cropconnect.entities;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,13 +16,17 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -33,9 +38,9 @@ public class User extends BaseEntity{
     @Email
     private String email;
 
-    @Size(max = 40)
+    @Size(min = 5)
     @NotNull
-    @Column(name = "password", nullable = false, length = 40)
+    @Column(name = "password", nullable = false, length = 800)
 //    @Pattern(regexp = "")
     private String password;
 
@@ -44,4 +49,42 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Convert the single Role to a SimpleGrantedAuthority
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+
 }

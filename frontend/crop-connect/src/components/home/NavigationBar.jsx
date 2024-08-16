@@ -13,7 +13,7 @@ function NavigationBar() {
 
   const handleLogout = () => {
     logout();
-    navigate('/signin'); // Redirect to the sign-in page after logout
+    navigate('/'); // Redirect to the sign-in page after logout
   };
 
   console.log("USER IN NAVIGATION BAR----->",user)
