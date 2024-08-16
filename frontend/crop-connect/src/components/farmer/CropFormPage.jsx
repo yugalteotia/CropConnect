@@ -1,27 +1,42 @@
 import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useFormValues } from '../../hooks/useFormValues';
-// import { useFormValues } from './useFormValues';
 
 const CropFormPage = () => {
   const { formValues, setFormValues } = useFormValues();
   const [categories, setCategories] = React.useState([]);
   const formRef = useRef(null);
 
+  const resultJSON = localStorage.getItem("user");  
+  const user = JSON.parse(resultJSON);
+  const userId = user.id;
+
   useEffect(() => {
+    const fetchFarmer = async () => {
+      try {
+        const response = await axios.get(`/api/farmers/user/${userId}`);
+        const farmerData = response.data;
+        const farmerId = farmerData.id;
+        setFormValues({ ...formValues, farmerId: farmerId });
+      } catch (error) {
+        alert("Error fetching farmer by user id", error);
+      }
+    };
+
+    fetchFarmer();
+
     const fetchCategories = async () => {
       try {
         const response = await axios.get('/api/categories');
         setCategories(response.data);
-        console.log("categories in farmer from ", response.data);
+        console.log("categories in farmer form", response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
-    fetchCategories();
 
-    
-  }, []);
+    fetchCategories();
+  }, [userId, setFormValues]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -35,12 +50,12 @@ const CropFormPage = () => {
         ...formValues,
         imageUrl: formValues.imageUrl || 'default-image-url',
       };
+      console.log("Payload data:", payload);
       if (formValues.id === null) {
         await axios.post('/api/crops', payload);
+      } else {
+        await axios.put(`/api/crops/${formValues.id}`, payload);
       }
-    //   } else {
-    //     await axios.put(`/api/crops/${formValues.id}`, payload);
-    //   }
       resetForm();
     } catch (error) {
       console.error('Error saving crop:', error);
@@ -55,11 +70,9 @@ const CropFormPage = () => {
       imageUrl: '',
       quantity: '',
       categoryId: '',
-      farmerId: 1,
+      farmerId: formValues.farmerId,  // Preserve farmerId when resetting the form
     });
   };
-
-  
 
   return (
     <div className="card">

@@ -2,15 +2,14 @@ package com.cropconnect.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.FarmerDTO;
 import com.cropconnect.dto.MerchantUpdateDTO;
 import com.cropconnect.dto.MerchantDTO;
 import com.cropconnect.entities.Address;
-import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Merchant;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
@@ -22,6 +21,9 @@ import com.cropconnect.repository.UserRepository;
 @Service
 @Transactional
 public class MerchantServiceImpl implements MerchantService {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private MerchantRepository merchantRepository;
@@ -44,6 +46,7 @@ public class MerchantServiceImpl implements MerchantService {
 			
 			User user = modelMapper.map(merchantDTO.getUserDTO(), User.class);
 			user.setRole(Role.MERCHANT);
+			user.setPassword(passwordEncoder.encode(merchantDTO.getUserDTO().getPassword()));
 			 user = userRepository.save(user);
 			
 			Merchant merchant = modelMapper.map(merchantDTO, Merchant.class);
@@ -75,6 +78,10 @@ public class MerchantServiceImpl implements MerchantService {
 		if(address != null)
 			addressRepository.delete(address);
 		
+		User user = merchant.getUser();
+    	if (user != null)
+    		userRepository.delete(user);
+		
 		merchantRepository.delete(merchant);
 		 return new ApiResponse("Merchant and associated address deleted successfully");
 	}
@@ -92,5 +99,6 @@ public class MerchantServiceImpl implements MerchantService {
         // Convert Farmer entity to FarmerDTO
         return modelMapper.map(merchant, MerchantDTO.class);
     }
+
 
 }

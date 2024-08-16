@@ -1,23 +1,21 @@
 package com.cropconnect.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cropconnect.dto.AddressDTO;
 import com.cropconnect.dto.ApiResponse;
-import com.cropconnect.dto.CropDTO;
 import com.cropconnect.dto.FarmerDTO;
 import com.cropconnect.dto.UserDTO;
 import com.cropconnect.entities.Address;
-import com.cropconnect.entities.Crop;
 import com.cropconnect.entities.Farmer;
 import com.cropconnect.entities.Role;
 import com.cropconnect.entities.User;
@@ -42,6 +40,9 @@ public class FarmerServiceImpl implements FarmerService {
 
     @Autowired
     private ModelMapper modelMapper;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<FarmerDTO> getFarmers() {
@@ -73,6 +74,7 @@ public class FarmerServiceImpl implements FarmerService {
     	
     	User user = modelMapper.map(farmerDto.getUserDTO(), User.class);
     	user.setRole(Role.FARMER);
+    	user.setPassword(passwordEncoder.encode(farmerDto.getUserDTO().getPassword()));
     	user = userRepository.save(user);
     	
         Farmer farmer = modelMapper.map(farmerDto, Farmer.class);
@@ -103,6 +105,10 @@ public class FarmerServiceImpl implements FarmerService {
     	Address address = farmer.getAddress();
     	if(address != null)
     		addressRepository.delete(address);
+    	
+    	User user = farmer.getUser();
+    	if (user != null)
+    		userRepository.delete(user);
     	
         farmerRepository.deleteById(id);
         return new ApiResponse("Farmer deleted successfully");
@@ -147,7 +153,6 @@ public class FarmerServiceImpl implements FarmerService {
         // Convert Farmer entity to FarmerDTO
         return modelMapper.map(farmer, FarmerDTO.class);
     }
-
     
     
     
